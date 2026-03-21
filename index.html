@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momo Ashi — Tea & Snack Bar · NYC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink:       #E8849A;
+      --pink-light: #F5C4D0;
+      --pink-pale:  #FDF0F3;
+      --pink-deep:  #C4607A;
+      --brown:      #2D1714;
+      --brown-mid:  #5C2E24;
+      --cream:      #FFF8F5;
+      --white:      #FFFFFF;
+      --text:       #2D1714;
+      --text-muted: #8C5260;
+      --matcha:     #A8D8B0;
+      --honey:      #F7D59C;
+      --shadow-pink: rgba(232,132,154,0.22);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 68px;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,248,245,0.86);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1.5px solid var(--pink-light);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 10px var(--shadow-pink);
+    }
+    .nav-logo-text {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--brown);
+      line-height: 1.1;
+    }
+    .nav-logo-sub {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex; align-items: center;
+      gap: 28px; list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 16px; font-weight: 500;
+      color: var(--brown-mid);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+    .nav-links a:hover { color: var(--pink-deep); }
+    .nav-links a:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; border-radius: 4px; }
+
+    .nav-cta {
+      background: var(--pink) !important;
+      color: white !important;
+      padding: 8px 22px;
+      border-radius: 100px;
+      font-weight: 600 !important;
+      box-shadow: 0 3px 14px var(--shadow-pink);
+      transition: background 0.18s ease, transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease !important;
+    }
+    .nav-cta:hover {
+      background: var(--pink-deep) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(196,96,122,0.3) !important;
+    }
+    .nav-cta:active { transform: translateY(0) !important; }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      position: relative; overflow: hidden;
+      padding: 120px 32px 90px;
+      background: var(--pink-pale);
+    }
+
+    /* Wallpaper — left diagonal half */
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('wallpaper.webp') center center / cover no-repeat;
+      clip-path: polygon(0 0, 50% 0, 100% 100%, 0 100%);
+      pointer-events: none;
+    }
+
+    /* Pink overlay so text stays readable */
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(253,240,243,0.80) 0%, rgba(232,132,154,0.45) 100%);
+      pointer-events: none;
+    }
+
+    .paw-deco {
+      position: absolute;
+      user-select: none; pointer-events: none;
+      opacity: 0.07;
+    }
+    .paw-deco svg { display: block; }
+    .paw-1 { top: 10%; left: 5%;  transform: rotate(-22deg); width: 64px; height: 64px; }
+    .paw-2 { top: 18%; right: 7%; transform: rotate(14deg);  width: 42px; height: 42px; }
+    .paw-3 { bottom: 14%; right: 5%; transform: rotate(-8deg); width: 80px; height: 80px; }
+    .paw-4 { bottom: 22%; left: 3%; transform: rotate(26deg); width: 52px; height: 52px; }
+
+    .ico { display: inline-block; vertical-align: middle; flex-shrink: 0; }
+
+    .hero-logo {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 28px;
+      position: relative; z-index: 1;
+      box-shadow:
+        0 0 0 6px rgba(232,132,154,0.15),
+        0 12px 40px rgba(232,132,154,0.3),
+        0 2px 8px rgba(45,23,20,0.06);
+      animation: float 4.5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-9px); }
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: white;
+      border: 1.5px solid var(--pink-light);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--pink-deep);
+      margin-bottom: 24px;
+      position: relative; z-index: 1;
+      box-shadow: 0 2px 14px var(--shadow-pink);
+    }
+
+    .hero-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px; letter-spacing: 0.32em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      position: relative; z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(56px, 10vw, 100px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      color: var(--brown);
+      margin-bottom: 18px;
+      position: relative; z-index: 1;
+    }
+    .hero h1 em { font-style: normal; color: var(--pink); }
+
+    .hero-desc {
+      font-size: 18px; font-weight: 500;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin: 0 auto 36px;
+      position: relative; z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    /* ─── BUTTONS ────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--pink); color: white;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 17px; font-weight: 600;
+      border: none; border-radius: 100px;
+      padding: 14px 32px;
+      text-decoration: none; cursor: pointer;
+      box-shadow: 0 4px 22px var(--shadow-pink);
+      transition: background 0.18s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease;
+    }
+    .btn-primary:hover {
+      background: var(--pink-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(196,96,122,0.32);
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:focus-visible { outline: 2px solid var(--pink-deep); outline-offset: 3px; }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--pink-deep);
+      font-family: 'Fredoka', sans-serif;
+      font-size: 17px; font-weight: 600;
+      border: 2px solid var(--pink-light);
+      border-radius: 100px;
+      padding: 12px 28px;
+      text-decoration: none; cursor: pointer;
+      transition: border-color 0.18s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease;
+    }
+    .btn-outline:hover {
+      border-color: var(--pink);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px var(--shadow-pink);
+    }
+    .btn-outline:active { transform: translateY(0); }
+    .btn-outline:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+
+    /* ─── SECTION BASE ───────────────────────────── */
+    section { padding: 88px 32px; }
+    .section-inner { max-width: 1060px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--pink-deep);
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(30px, 4.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--brown);
+    }
+
+    /* ─── ABOUT ──────────────────────────────────── */
+    #about { background: white; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-visual { position: relative; }
+    .about-img-wrap {
+      border-radius: 32px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border: 2px solid var(--pink-light);
+      background: var(--pink-pale);
+      box-shadow: 0 8px 40px var(--shadow-pink);
+      position: relative;
+    }
+    .about-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* color treatment overlay */
+    .about-img-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(232,132,154,0.15), transparent 50%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -18px; right: -18px;
+      background: var(--pink);
+      color: white;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14px; font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 18px;
+      box-shadow: 0 6px 22px rgba(232,132,154,0.4);
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    .about-text { }
+    .about-text .section-title { margin: 8px 0 18px; }
+    .about-text p {
+      font-size: 15.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .about-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 24px;
+    }
+    .tag {
+      background: var(--pink-pale);
+      border: 1.5px solid var(--pink-light);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: var(--pink-deep);
+      transition: background 0.15s ease, transform 0.15s ease;
+      cursor: default;
+    }
+    .tag:hover { background: var(--pink-light); transform: translateY(-1px); }
+
+    /* ─── MENU ───────────────────────────────────── */
+    #menu { background: var(--pink-pale); }
+
+    .menu-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .menu-header .section-title { margin: 6px 0 10px; }
+    .menu-header p { font-size: 16px; color: var(--text-muted); }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-card {
+      background: white;
+      border-radius: 24px;
+      border: 1.5px solid var(--pink-light);
+      overflow: hidden;
+      box-shadow: 0 2px 14px var(--shadow-pink);
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s ease;
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(196,96,122,0.18);
+    }
+
+    .menu-card-img {
+      height: 136px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 62px;
+    }
+
+    .menu-card-body { padding: 16px 20px 20px; }
+    .menu-card-name {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 19px; font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 5px;
+    }
+    .menu-card-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .menu-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .menu-card-price {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 19px; font-weight: 700;
+      color: var(--pink-deep);
+    }
+    .chip {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 100px;
+    }
+    .chip-popular {
+      background: rgba(247,213,156,0.35);
+      color: #7a5210;
+      border: 1px solid var(--honey);
+    }
+    .chip-seasonal {
+      background: rgba(168,216,176,0.25);
+      color: #2e6a45;
+      border: 1px solid var(--matcha);
+    }
+    .chip-new {
+      background: rgba(232,132,154,0.12);
+      color: var(--pink-deep);
+      border: 1px solid var(--pink-light);
+    }
+
+    .menu-cta { text-align: center; margin-top: 44px; }
+
+    /* ─── GALLERY ───────────────────────────────────── */
+    #gallery { background: var(--cream); }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .gallery-header .section-title { margin: 6px 0 10px; }
+    .gallery-header p { font-size: 16px; color: var(--text-muted); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 14px;
+    }
+
+    .gallery-item {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 3px 16px var(--shadow-pink);
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 12px 36px rgba(196,96,122,0.2);
+    }
+    .gallery-item:focus-visible {
+      outline: 3px solid var(--pink);
+      outline-offset: 3px;
+    }
+
+    /* spanning variants */
+    .gallery-item.tall  { grid-row: span 2; }
+    .gallery-item.wide  { grid-column: span 2; }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    /* gradient + label overlay */
+    .gallery-item::after {
+      content: attr(data-label);
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(45,23,20,0.55) 0%, transparent 55%);
+      display: flex;
+      align-items: flex-end;
+      padding: 16px 18px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+
+    .gallery-ig {
+      text-align: center;
+      margin-top: 36px;
+    }
+    .gallery-ig p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    /* ─── REVIEWS ───────────────────────────────────── */
+    #reviews { background: var(--pink-pale); }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+    .reviews-header .section-title { margin: 6px 0 10px; }
+    .reviews-header p { font-size: 16px; color: var(--text-muted); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .review-card {
+      background: white;
+      border: 1.5px solid var(--pink-light);
+      border-radius: 24px;
+      padding: 28px 24px;
+      display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 3px 16px var(--shadow-pink);
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(196,96,122,0.16);
+    }
+
+    .review-stars {
+      display: flex; gap: 3px;
+      color: #F7B731;
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .review-text {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .review-footer {
+      display: flex; align-items: center; gap: 12px;
+      padding-top: 14px;
+      border-top: 1.5px dashed var(--pink-light);
+    }
+    .review-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--pink-pale);
+      border: 2px solid var(--pink-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .review-name {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 15px; font-weight: 600;
+      color: var(--brown);
+    }
+    .review-source {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .review-source svg {
+      width: 12px; height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ─── CONTACT ────────────────────────────────── */
+    #contact { background: white; }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .contact-header .section-title { margin: 6px 0 10px; }
+    .contact-header p { font-size: 16px; color: var(--text-muted); }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .location-card {
+      background: var(--pink-pale);
+      border: 1.5px solid var(--pink-light);
+      border-radius: 24px;
+      padding: 28px 24px 24px;
+      display: flex; flex-direction: column;
+      gap: 0;
+      box-shadow: 0 3px 16px var(--shadow-pink);
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s ease;
+    }
+    .location-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(196,96,122,0.18);
+    }
+
+    .location-name {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 21px; font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1.5px dashed var(--pink-light);
+    }
+
+    .info-block {
+      display: flex; gap: 12px;
+      margin-bottom: 16px;
+    }
+    .info-icon {
+      width: 38px; height: 38px;
+      background: white;
+      border: 1.5px solid var(--pink-light);
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .info-label {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 1px;
+    }
+    .info-detail {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .location-actions {
+      display: flex; flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .btn-location-primary {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      background: var(--pink); color: white;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14px; font-weight: 600;
+      border: none; border-radius: 100px;
+      padding: 11px 20px;
+      text-decoration: none; cursor: pointer;
+      box-shadow: 0 3px 12px var(--shadow-pink);
+      transition: background 0.18s ease, transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-location-primary:hover { background: var(--pink-deep); transform: translateY(-1px); }
+    .btn-location-primary:active { transform: translateY(0); }
+    .btn-location-secondary {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      background: white; color: var(--pink-deep);
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14px; font-weight: 600;
+      border: 1.5px solid var(--pink-light);
+      border-radius: 100px;
+      padding: 10px 20px;
+      text-decoration: none; cursor: pointer;
+      transition: border-color 0.18s ease, transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-location-secondary:hover { border-color: var(--pink); transform: translateY(-1px); }
+    .btn-location-secondary:active { transform: translateY(0); }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--brown);
+      padding: 52px 32px 44px;
+    }
+    .footer-inner {
+      max-width: 1060px; margin: 0 auto;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 22px;
+      text-align: center;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .footer-logo img {
+      width: 40px; height: 40px;
+      border-radius: 50%; object-fit: cover;
+      opacity: 0.9;
+    }
+    .footer-name {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 22px; font-weight: 700;
+      color: white;
+    }
+    .footer-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 12px; letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-links {
+      display: flex; gap: 24px; list-style: none;
+    }
+    .footer-links a {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 15px; font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-links a:hover { color: var(--pink-light); }
+    .footer-links a:focus-visible { outline: 2px solid var(--pink-light); outline-offset: 3px; border-radius: 3px; }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.28);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 800px) {
+      nav { padding: 0 20px; }
+      .nav-links li:not(:last-child) { display: none; }
+
+      .about-grid { grid-template-columns: 1fr; }
+      .locations-grid { grid-template-columns: 1fr; }
+
+      .about-visual { order: -1; }
+      .about-badge { bottom: -12px; right: -8px; }
+
+      section { padding: 64px 20px; }
+      .hero { padding: 100px 20px 64px; }
+
+      .menu-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .locations-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.tall  { grid-row: span 1; }
+      .gallery-item.wide  { grid-column: span 2; }
+    }
+    @media (max-width: 480px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .hero-logo { width: 110px; height: 110px; }
+    }
+
+    /* ─── SPARKLES ───────────────────────────────────── */
+    .sparkles-text {
+      position: relative;
+      display: inline-block;
+    }
+    .sparkle-svg {
+      position: absolute;
+      pointer-events: none;
+      z-index: 20;
+      animation: sparkle-anim 0.8s ease-in-out infinite;
+    }
+    @keyframes sparkle-anim {
+      0%   { opacity: 0; transform: scale(0) rotate(75deg); }
+      40%  { opacity: 1; transform: scale(1) rotate(120deg); }
+      100% { opacity: 0; transform: scale(0) rotate(150deg); }
+    }
+
+    /* ─── LIGHTBOX ───────────────────────────────────── */
+    .lightbox {
+      position: fixed; inset: 0;
+      z-index: 999;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(232,132,154,0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lightbox-img {
+      max-width: min(90vw, 900px);
+      max-height: 88vh;
+      border-radius: 20px;
+      object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      transform: scale(0.92);
+      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .lightbox.open .lightbox-img {
+      transform: scale(1);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: white;
+      font-size: 22px;
+      line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.28); transform: scale(1.1); }
+
+    .lightbox-caption {
+      position: absolute;
+      bottom: 28px;
+      left: 50%; transform: translateX(-50%);
+      font-family: 'Fredoka', sans-serif;
+      font-size: 16px; font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      background: rgba(196,96,122,0.6);
+      padding: 7px 20px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* make gallery cursor a zoom pointer */
+    .gallery-item { cursor: zoom-in; }
+  </style>
+</head>
+<body>
+
+  <!-- ── SVG SYMBOLS ──────────────────────────────── -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Paw print: main pad + 4 toe beans -->
+    <symbol id="i-paw" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="67" rx="24" ry="21"/>
+      <ellipse cx="22" cy="42" rx="11" ry="14" transform="rotate(-15 22 42)"/>
+      <ellipse cx="40" cy="30" rx="11" ry="14" transform="rotate(-5 40 30)"/>
+      <ellipse cx="60" cy="30" rx="11" ry="14" transform="rotate(5 60 30)"/>
+      <ellipse cx="78" cy="42" rx="11" ry="14" transform="rotate(15 78 42)"/>
+    </symbol>
+    <!-- Cherry blossom: 5 rounded petals + centre -->
+    <symbol id="i-blossom" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="22" rx="11" ry="20"/>
+      <ellipse cx="50" cy="22" rx="11" ry="20" transform="rotate(72 50 50)"/>
+      <ellipse cx="50" cy="22" rx="11" ry="20" transform="rotate(144 50 50)"/>
+      <ellipse cx="50" cy="22" rx="11" ry="20" transform="rotate(216 50 50)"/>
+      <ellipse cx="50" cy="22" rx="11" ry="20" transform="rotate(288 50 50)"/>
+      <circle cx="50" cy="50" r="10"/>
+    </symbol>
+    <!-- Tea mug: cup body + handle + steam wisps -->
+    <symbol id="i-tea" viewBox="0 0 110 100">
+      <path d="M30 22 Q26 14 30 6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+      <path d="M55 22 Q51 14 55 6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+      <path d="M80 22 Q76 14 80 6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+      <path d="M12 30 L20 90 Q20 97 28 97 L90 97 Q98 97 98 90 L106 30 Z"/>
+      <path d="M98 46 Q114 46 114 64 Q114 82 98 78" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+    </symbol>
+    <!-- Bubble tea: tall cup + straw + pearls -->
+    <symbol id="i-boba" viewBox="0 0 80 110">
+      <rect x="34" y="0" width="8" height="38" rx="4"/>
+      <path d="M8 38 L14 98 Q14 110 28 110 L52 110 Q66 110 66 98 L72 38 Z"/>
+      <circle cx="28" cy="96" r="8" fill="white" opacity="0.65"/>
+      <circle cx="40" cy="103" r="8" fill="white" opacity="0.65"/>
+      <circle cx="52" cy="95" r="8" fill="white" opacity="0.65"/>
+    </symbol>
+    <!-- Peach: round fruit + leaf + stem -->
+    <symbol id="i-peach" viewBox="0 0 100 100">
+      <circle cx="50" cy="60" r="34"/>
+      <path d="M50 28 Q45 20 42 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+      <path d="M50 26 Q67 8 73 22 Q62 28 50 26Z"/>
+      <line x1="50" y1="26" x2="52" y2="17" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <!-- Mochi dango: 3 balls on a stick -->
+    <symbol id="i-mochi" viewBox="0 0 100 110">
+      <rect x="47" y="6" width="6" height="98" rx="3"/>
+      <circle cx="50" cy="20" r="18"/>
+      <circle cx="50" cy="55" r="18"/>
+      <circle cx="50" cy="90" r="18"/>
+    </symbol>
+    <!-- Strawberry: heart body + leaves + seeds -->
+    <symbol id="i-strawberry" viewBox="0 0 100 100">
+      <path d="M50 94 Q12 74 12 46 Q12 18 50 18 Q88 18 88 46 Q88 74 50 94Z"/>
+      <path d="M50 18 Q36 0 24 12 Q38 20 50 18Z"/>
+      <line x1="50" y1="2" x2="50" y2="18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <path d="M50 18 Q64 0 76 12 Q62 20 50 18Z"/>
+      <circle cx="36" cy="48" r="3.5" fill="white" opacity="0.55"/>
+      <circle cx="54" cy="40" r="3.5" fill="white" opacity="0.55"/>
+      <circle cx="64" cy="62" r="3.5" fill="white" opacity="0.55"/>
+      <circle cx="38" cy="68" r="3.5" fill="white" opacity="0.55"/>
+      <circle cx="52" cy="76" r="3.5" fill="white" opacity="0.55"/>
+    </symbol>
+    <!-- Croissant: crescent body + flaky layers -->
+    <symbol id="i-croissant" viewBox="0 0 100 100">
+      <path d="M12 70 Q8 40 32 22 Q50 10 68 22 Q88 38 88 58 Q82 84 62 88 Q46 92 34 80 Q22 74 12 70Z"/>
+      <path d="M22 66 Q46 40 78 60" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" opacity="0.45"/>
+      <path d="M28 76 Q50 56 74 72" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" opacity="0.45"/>
+    </symbol>
+    <!-- 4-point sparkle star -->
+    <symbol id="i-sparkle" viewBox="0 0 21 21">
+      <path d="M9.82531 0.843845C10.0553 0.215178 10.9446 0.215178 11.1746 0.843845L11.8618 2.72026C12.4006 4.19229 12.3916 6.39157 13.5 7.5C14.6084 8.60843 16.8077 8.59935 18.2797 9.13822L20.1561 9.82534C20.7858 10.0553 20.7858 10.9447 20.1561 11.1747L18.2797 11.8618C16.8077 12.4007 14.6084 12.3916 13.5 13.5C12.3916 14.6084 12.4006 16.8077 11.8618 18.2798L11.1746 20.1562C10.9446 20.7858 10.0553 20.7858 9.82531 20.1562L9.13819 18.2798C8.59932 16.8077 8.60843 14.6084 7.5 13.5C6.39157 12.3916 4.19225 12.4007 2.72023 11.8618L0.843814 11.1747C0.215148 10.9447 0.215148 10.0553 0.843814 9.82534L2.72023 9.13822C4.19225 8.59935 6.39157 8.60843 7.5 7.5C8.60843 6.39157 8.59932 4.19229 9.13819 2.72026L9.82531 0.843845Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ── NAV ──────────────────────────────────────── -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="brand assets/momologo.png" alt="Momo Ashi logo" />
+      <div>
+        <div class="nav-logo-text">momo ashi</div>
+        <div class="nav-logo-sub">Tea &amp; Snack Bar</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact" class="nav-cta">Find Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <span class="paw-deco paw-1"><svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><use href="#i-paw"/></svg></span>
+    <span class="paw-deco paw-2"><svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><use href="#i-paw"/></svg></span>
+    <span class="paw-deco paw-3"><svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><use href="#i-paw"/></svg></span>
+    <span class="paw-deco paw-4"><svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><use href="#i-paw"/></svg></span>
+
+    <img src="brand assets/momologo.png" alt="Momo Ashi" class="hero-logo" />
+
+    <div class="hero-badge"><svg class="ico" width="14" height="14" viewBox="0 0 110 100" fill="var(--pink-deep)" aria-hidden="true"><use href="#i-tea"/></svg> Tea &amp; Snack Bar &nbsp;&middot;&nbsp; New York City</div>
+    <p class="hero-jp">もも足</p>
+    <h1>momo <em>ashi</em></h1>
+    <p class="hero-desc">
+      Handcrafted teas, cozy snacks, and very opinionated cats —
+      welcome to your new favorite spot in the city.
+    </p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">See Our Menu <svg class="ico" width="18" height="18" viewBox="0 0 100 110" fill="white" aria-hidden="true"><use href="#i-mochi"/></svg></a>
+      <a href="#contact" class="btn-outline">Find Us 📍</a>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ─────────────────────────────────────── -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+
+        <div class="about-visual">
+          <div class="about-img-wrap">
+            <img
+              src="https://placehold.co/720x540/FDF0F3/E8849A?text=momo+ashi"
+              alt="Momo Ashi café"
+            />
+          </div>
+          <div class="about-badge"><svg class="ico" width="16" height="16" viewBox="0 0 100 100" fill="white" aria-hidden="true"><use href="#i-paw"/></svg> New York City</div>
+        </div>
+
+        <div class="about-text">
+          <p class="section-label">Our Story</p>
+          <h2 class="section-title">Your favorite<br/>bubble tea spot <svg class="ico" width="32" height="32" viewBox="0 0 100 100" fill="var(--pink)" aria-hidden="true"><use href="#i-blossom"/></svg></h2>
+          <p>
+            Momo Ashi is a beloved bubble tea destination with three convenient
+            locations across New York — Bayside, Flushing, and Woodside.
+          </p>
+          <p>
+            Specializing in refreshing bubble tea and delightful Asian-inspired
+            snacks, we offer a cozy retreat for tea lovers and food enthusiasts
+            alike. Our menu features handcrafted beverages with premium
+            ingredients, alongside savory rice wraps and sweet toast creations
+            that pair perfectly with your drink.
+          </p>
+          <p>
+            Whether you're stopping by for a quick pick-me-up or settling in for
+            a relaxing break, Momo Ashi combines quality, comfort, and a touch of
+            creativity in every cup and bite.
+          </p>
+          <div class="about-tags">
+<span class="tag"><svg class="ico" width="14" height="14" viewBox="0 0 110 100" fill="var(--pink-deep)" aria-hidden="true"><use href="#i-tea"/></svg> Artisan teas</span>
+            <span class="tag"><svg class="ico" width="14" height="14" viewBox="0 0 100 100" fill="var(--pink-deep)" aria-hidden="true"><use href="#i-paw"/></svg> Cozy &amp; welcoming</span>
+            <span class="tag"><svg class="ico" width="14" height="14" viewBox="0 0 21 21" fill="var(--pink-deep)" aria-hidden="true"><use href="#i-sparkle"/></svg> NYC-made</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MENU ──────────────────────────────────────── -->
+  <section id="menu">
+    <div class="section-inner">
+
+      <div class="menu-header">
+        <p class="section-label">What We Serve</p>
+        <h2 class="section-title"><span id="sparkles-title" class="sparkles-text">Menu Highlights</span></h2>
+        <p>Handcrafted with love, one cup at a time.</p>
+      </div>
+
+      <div class="menu-grid">
+
+        <div class="menu-card">
+          <div class="menu-card-img" style="background:#FDF0F3;"><svg width="68" height="68" viewBox="0 0 100 100" fill="#E8849A" aria-hidden="true"><use href="#i-peach"/></svg></div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Peach Paw Latte</div>
+            <div class="menu-card-desc">Silky oat milk latte with house-made peach syrup and paw-print foam art.</div>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">$7.50</span>
+              <span class="chip chip-popular">Popular</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img" style="background:#EDFBF0;"><svg width="68" height="68" viewBox="0 0 110 100" fill="#A8D8B0" aria-hidden="true"><use href="#i-tea"/></svg></div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Matcha Milk Tea</div>
+            <div class="menu-card-desc">Ceremonial-grade matcha blended with fresh whole milk and a touch of honey.</div>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">$6.50</span>
+              <span class="chip chip-seasonal">Seasonal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img" style="background:#FFF9EE;"><svg width="58" height="68" viewBox="0 0 80 110" fill="#F7D59C" aria-hidden="true"><use href="#i-boba"/></svg></div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Honey Boba Black Tea</div>
+            <div class="menu-card-desc">Classic black tea with jasmine, chewy tapioca pearls, and wildflower honey.</div>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">$7.00</span>
+              <span class="chip chip-popular">Popular</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img" style="background:#FDF0F3;"><svg width="52" height="68" viewBox="0 0 100 110" fill="#E8849A" aria-hidden="true"><use href="#i-mochi"/></svg></div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Mochi Trio</div>
+            <div class="menu-card-desc">Three seasonal mochi bites — rotating flavors: strawberry, taro &amp; ube.</div>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">$5.50</span>
+              <span class="chip chip-new">New</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img" style="background:#FFF4F7;"><svg width="68" height="68" viewBox="0 0 100 100" fill="#E8849A" aria-hidden="true"><use href="#i-strawberry"/></svg></div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Strawberry Cream Soda</div>
+            <div class="menu-card-desc">Fresh strawberry puree, sparkling water, and a cloud of whipped cream.</div>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">$6.00</span>
+              <span class="chip chip-seasonal">Seasonal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img" style="background:#F7F3FF;"><svg width="72" height="68" viewBox="0 0 100 100" fill="#C4A882" aria-hidden="true"><use href="#i-croissant"/></svg></div>
+          <div class="menu-card-body">
+            <div class="menu-card-name">Ube Cream Croissant</div>
+            <div class="menu-card-desc">Flaky, buttery croissant filled with house-made ube cream. Baked fresh daily.</div>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">$5.00</span>
+              <span class="chip chip-new">New</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="menu-cta">
+        <a href="#contact" class="btn-primary">Come try it in person <svg class="ico" width="18" height="18" viewBox="0 0 100 100" fill="white" aria-hidden="true"><use href="#i-paw"/></svg></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── GALLERY ───────────────────────────────────── -->
+  <section id="gallery">
+    <div class="section-inner">
+
+      <div class="gallery-header">
+        <p class="section-label">Our World</p>
+        <h2 class="section-title">A peek inside <svg class="ico" width="32" height="32" viewBox="0 0 100 100" fill="var(--pink)" aria-hidden="true"><use href="#i-blossom"/></svg></h2>
+        <p>Follow us @momoashi for more posts.</p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <!-- col 1: tall, spans rows 1–2 -->
+        <div class="gallery-item tall" data-label="Boba & the wall" tabindex="0">
+          <img src="gallery pics/1.jpg" alt="Boba drink in front of the cat mural" />
+        </div>
+
+        <!-- row 1: wide + 1 normal -->
+        <div class="gallery-item wide" data-label="Matcha waffle vibes" tabindex="0">
+          <img src="gallery pics/9.jpg" alt="Matcha waffle and Momo Ashi cup" />
+        </div>
+        <div class="gallery-item" data-label="Onigiri + boba" tabindex="0">
+          <img src="gallery pics/5.jpg" alt="Onigiri and boba on pink tray" />
+        </div>
+
+        <!-- row 2: three normals (col 1 still tall) -->
+        <div class="gallery-item" data-label="The jelly bar" tabindex="0">
+          <img src="gallery pics/4.jpg" alt="Coconut, mango star, rainbow and mango pop boba jellies" />
+        </div>
+        <div class="gallery-item" data-label="S'mores toast" tabindex="0">
+          <img src="gallery pics/3.jpg" alt="Toasted marshmallow s'mores toast" />
+        </div>
+        <div class="gallery-item" data-label="Momo mugs" tabindex="0">
+          <img src="gallery pics/10.jpg" alt="Branded Momo Ashi cups" />
+        </div>
+
+        <!-- row 3: four normals -->
+        <div class="gallery-item" data-label="The classic combo" tabindex="0">
+          <img src="gallery pics/6.jpg" alt="Momo Ashi cup and onigiri" />
+        </div>
+        <div class="gallery-item" data-label="Merch drop" tabindex="0">
+          <img src="gallery pics/7.jpg" alt="Momo Ashi branded bottle and tote bag" />
+        </div>
+        <div class="gallery-item" data-label="Banana choco toast" tabindex="0">
+          <img src="gallery pics/2.jpg" alt="Banana chocolate drizzle toast" />
+        </div>
+        <div class="gallery-item" data-label="S'mores, toasted" tabindex="0">
+          <img src="gallery pics/8.jpg" alt="S'mores toast close-up" />
+        </div>
+
+      </div>
+
+      <div class="gallery-ig">
+        <p>See more on Instagram</p>
+        <a href="https://www.instagram.com/momoashi/?hl=en" target="_blank" rel="noopener" class="btn-outline">@momoashi</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── REVIEWS ───────────────────────────────────── -->
+  <section id="reviews">
+    <div class="section-inner">
+
+      <div class="reviews-header">
+        <p class="section-label">What People Say</p>
+        <h2 class="section-title">Loved by NYC <svg class="ico" width="32" height="32" viewBox="0 0 100 100" fill="var(--pink)" aria-hidden="true"><use href="#i-blossom"/></svg></h2>
+        <p>Real reviews from our regulars.</p>
+      </div>
+
+      <div class="reviews-grid">
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">
+            Momo Ashi never disappoints! Their drinks are consistently fresh and perfectly sweetened, with chewy pearls that hit the spot every time. The snacks are equally amazing — fluffy, flavorful, and great for sharing. The Flushing location is cozy and clean, with friendly staff who remember my usual order. A must-visit for tea lovers!
+          </p>
+          <div class="review-footer">
+            <div class="review-avatar"><svg width="20" height="20" viewBox="0 0 80 110" fill="var(--pink)" aria-hidden="true"><use href="#i-boba"/></svg></div>
+            <div>
+              <div class="review-name">Google Reviewer</div>
+              <div class="review-source">
+                <!-- Google G icon -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                Google Review
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">
+            I've tried all three locations, and each delivers the same high standard. The rice wraps are hearty and satisfying, while the sweet toasts are indulgent without being overwhelming. Their milk tea is smooth and aromatic — always my afternoon treat after work. Fast service and a welcoming vibe make this chain a neighborhood gem!
+          </p>
+          <div class="review-footer">
+            <div class="review-avatar"><svg width="22" height="20" viewBox="0 0 110 100" fill="var(--pink)" aria-hidden="true"><use href="#i-tea"/></svg></div>
+            <div>
+              <div class="review-name">Google Reviewer</div>
+              <div class="review-source">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                Google Review
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">
+            The Bayside branch is my favorite study spot. The drinks are refreshing (love the customizable sweetness levels!), and the snacks keep me fueled for hours. Free Wi-Fi, ample seating, and a chill atmosphere make it ideal for productivity. Staff is attentive without being intrusive. Highly recommend!
+          </p>
+          <div class="review-footer">
+            <div class="review-avatar"><svg width="20" height="20" viewBox="0 0 100 100" fill="var(--pink)" aria-hidden="true"><use href="#i-blossom"/></svg></div>
+            <div>
+              <div class="review-name">Google Reviewer</div>
+              <div class="review-source">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                Google Review
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ───────────────────────────────────── -->
+  <section id="contact">
+    <div class="section-inner">
+
+      <div class="contact-header">
+        <p class="section-label">Find Us</p>
+        <h2 class="section-title">Three locations in NYC <svg class="ico" width="32" height="32" viewBox="0 0 100 100" fill="var(--pink)" aria-hidden="true"><use href="#i-paw"/></svg></h2>
+        <p>Walk in, order online, or give us a call — we'd love to see you.</p>
+      </div>
+
+      <div class="locations-grid">
+
+        <!-- Bayside -->
+        <div class="location-card">
+          <div class="location-name">Momo Ashi — Bayside</div>
+          <div class="info-block">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Address</div>
+              <div class="info-detail">40-06 Bell Blvd<br/>Bayside, NY 11361</div>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">🕐</div>
+            <div>
+              <div class="info-label">Hours</div>
+              <div class="info-detail">
+                Mon–Thur &nbsp;1:00pm – 11:00pm<br/>
+                Fri–Sat &nbsp;&nbsp;&nbsp;&nbsp;12:00pm – 11:00pm<br/>
+                Sun &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1:00pm – 11:00pm
+              </div>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">📞</div>
+            <div>
+              <div class="info-label">Phone</div>
+              <div class="info-detail">718-819-8848</div>
+            </div>
+          </div>
+          <div class="location-actions">
+            <a href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener" class="btn-location-primary">Order Online</a>
+            <a href="#" class="btn-location-secondary">View on Google Maps</a>
+          </div>
+        </div>
+
+        <!-- Flushing -->
+        <div class="location-card">
+          <div class="location-name">Momo Ashi — Flushing</div>
+          <div class="info-block">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Address</div>
+              <div class="info-detail">147-05 45th Ave<br/>Flushing, NY 11355</div>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">🕐</div>
+            <div>
+              <div class="info-label">Hours</div>
+              <div class="info-detail">
+                Mon–Sun &nbsp;11:30am – 8:00pm
+              </div>
+            </div>
+          </div>
+          <div class="location-actions">
+            <a href="https://order.mealkeyway.com/customer/release/index?mid=7944367672514974656b2f777331556b302b46364a673d3d&convertAllImages=true#/main" target="_blank" rel="noopener" class="btn-location-primary">Order Online</a>
+            <a href="#" class="btn-location-secondary">View on Google Maps</a>
+          </div>
+        </div>
+
+        <!-- Woodside -->
+        <div class="location-card">
+          <div class="location-name">Momo Ashi — Woodside</div>
+          <div class="info-block">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Address</div>
+              <div class="info-detail">60-11 Roosevelt Ave<br/>Woodside, NY 11377</div>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">🕐</div>
+            <div>
+              <div class="info-label">Hours</div>
+              <div class="info-detail">
+                Mon–Sun &nbsp;11:30am – 8:00pm
+              </div>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">📞</div>
+            <div>
+              <div class="info-label">Phone</div>
+              <div class="info-detail">929-614-5721</div>
+            </div>
+          </div>
+          <div class="location-actions">
+            <a href="https://order.mealkeyway.com/customer/release/index?mid=554369345250396e6a6a644a3347445130554d6f49773d3d&convertAllImages=true#/main" target="_blank" rel="noopener" class="btn-location-primary">Order Online</a>
+            <a href="#" class="btn-location-secondary">View on Google Maps</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="brand assets/momologo.png" alt="Momo Ashi" />
+        <div>
+          <div class="footer-name">momo ashi</div>
+          <div class="footer-jp">もも足</div>
+        </div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="https://www.instagram.com/momoashi/?hl=en" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+      <p class="footer-copy">
+        &copy; Momo Ashi Tea &amp; Snack Bar &nbsp;&middot;&nbsp; New York City
+        <br/><span style="margin-top:6px; display:inline-block;">Made by <a href="https://voltanyc.org" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.45); text-decoration:underline; text-underline-offset:3px; transition:color 0.15s ease;" onmouseover="this.style.color='rgba(245,196,208,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Volta NYC</a></span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const COLORS = ['#E8849A', '#C4607A'];
+      const COUNT  = 10;
+      const container = document.getElementById('sparkles-title');
+      if (!container) return;
+
+      const STAR_PATH = "M9.82531 0.843845C10.0553 0.215178 10.9446 0.215178 11.1746 0.843845L11.8618 2.72026C12.4006 4.19229 12.3916 6.39157 13.5 7.5C14.6084 8.60843 16.8077 8.59935 18.2797 9.13822L20.1561 9.82534C20.7858 10.0553 20.7858 10.9447 20.1561 11.1747L18.2797 11.8618C16.8077 12.4007 14.6084 12.3916 13.5 13.5C12.3916 14.6084 12.4006 16.8077 11.8618 18.2798L11.1746 20.1562C10.9446 20.7858 10.0553 20.7858 9.82531 20.1562L9.13819 18.2798C8.59932 16.8077 8.60843 14.6084 7.5 13.5C6.39157 12.3916 4.19225 12.4007 2.72023 11.8618L0.843814 11.1747C0.215148 10.9447 0.215148 10.0553 0.843814 9.82534L2.72023 9.13822C4.19225 8.59935 6.39157 8.60843 7.5 7.5C8.60843 6.39157 8.59932 4.19229 9.13819 2.72026L9.82531 0.843845Z";
+
+      function createSparkle() {
+        const x      = Math.random() * 100;
+        const y      = Math.random() * 100;
+        const color  = COLORS[Math.floor(Math.random() * COLORS.length)];
+        const scale  = (Math.random() * 0.8 + 0.4);
+        const delay  = Math.random() * 3;
+        const size   = 18 * scale;
+
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('class', 'sparkle-svg');
+        svg.setAttribute('width', size);
+        svg.setAttribute('height', size);
+        svg.setAttribute('viewBox', '0 0 21 21');
+        svg.style.left    = x + '%';
+        svg.style.top     = y + '%';
+        svg.style.animationDelay = delay + 's';
+        svg.style.animationDuration = (0.7 + Math.random() * 0.6) + 's';
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', STAR_PATH);
+        path.setAttribute('fill', color);
+        svg.appendChild(path);
+        return svg;
+      }
+
+      function refresh() {
+        // remove old sparkles
+        container.querySelectorAll('.sparkle-svg').forEach(el => el.remove());
+        // add fresh set
+        for (let i = 0; i < COUNT; i++) {
+          container.appendChild(createSparkle());
+        }
+      }
+
+      refresh();
+    })();
+  </script>
+
+  <!-- ── LIGHTBOX ──────────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&#x2715;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <script>
+    const lightbox     = document.getElementById('lightbox');
+    const lbImg        = document.getElementById('lightbox-img');
+    const lbCaption    = document.getElementById('lightbox-caption');
+    const lbClose      = document.getElementById('lightbox-close');
+
+    function openLightbox(src, alt, label) {
+      lbImg.src        = src;
+      lbImg.alt        = alt;
+      lbCaption.textContent = label || '';
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // attach click to every gallery item
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img   = item.querySelector('img');
+        const label = item.dataset.label || '';
+        openLightbox(img.src, img.alt, label);
+      });
+      // keyboard support
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+
+    // click backdrop to close
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Escape key to close
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
