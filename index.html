@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Momo Ashi | Tea, Snacks, and Wamochi</title>
+  <title>Momo Ashi | Where Comfort Takes Flavor</title>
   <link rel="icon" type="image/png" href="brand assets/momologo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,120 +14,92 @@
       --momo-pink: #EB92A4;
       --pearl-black: #332929;
       --warm-cream: #FFF7E8;
-      --pressed-pink: #D9788C;
-      --cocoa: #5D4A47;
-      --soft-line: rgba(51, 41, 41, .16);
-      --shadow: 0 24px 60px rgba(51, 41, 41, .18);
-      --display: "Arial Black", "Plus Jakarta Sans", Impact, sans-serif;
-      --body: "Plus Jakarta Sans", system-ui, sans-serif;
-      --editorial: "Cormorant Garamond", Georgia, serif;
+      --focus: 3px solid #332929;
     }
 
     * { box-sizing: border-box; }
 
     html {
-      scroll-behavior: smooth;
       background: var(--misty-blush);
+      color: var(--pearl-black);
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
     }
 
     body {
       margin: 0;
-      font-family: var(--body);
-      color: var(--pearl-black);
+      min-width: 320px;
       background: var(--misty-blush);
-      line-height: 1.6;
-      overflow-x: hidden;
     }
 
-    body.menu-open { overflow: hidden; }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; }
+    img { display: block; max-width: 100%; }
 
     .skip-link {
       position: fixed;
       left: 16px;
       top: 16px;
-      z-index: 300;
+      z-index: 20;
       transform: translateY(-140%);
       background: var(--pearl-black);
       color: var(--warm-cream);
       padding: 10px 14px;
       border-radius: 4px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .skip-link:focus { transform: translateY(0); }
 
-    .pickup-bar {
-      min-height: 60px;
-      display: grid;
-      place-items: center;
-      background: var(--momo-pink);
-      color: var(--warm-cream);
-      font-family: var(--display);
-      font-size: clamp(20px, 2vw, 29px);
-      line-height: 1;
-      text-decoration: none;
-      text-transform: uppercase;
+    .site-shell {
+      width: min(100%, 1920px);
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background: var(--misty-blush);
     }
 
-    .pickup-bar:focus-visible,
-    .nav-link:focus-visible,
-    .brand-link:focus-visible,
-    .button:focus-visible,
-    .carousel-arrow:focus-visible,
-    .carousel-dot:focus-visible,
-    .menu-toggle:focus-visible,
-    .gallery-item:focus-visible,
-    .lightbox-close:focus-visible {
-      outline: 3px solid var(--pearl-black);
+    .hero-carousel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1920 / 1075;
+      min-height: 560px;
+    }
+
+    .reference-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 500ms ease;
+    }
+
+    .reference-slide.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .reference-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hotspot {
+      position: absolute;
+      z-index: 5;
+      display: block;
+      border-radius: 4px;
+      color: transparent;
+      overflow: hidden;
+      text-indent: -9999px;
+    }
+
+    .hotspot:focus-visible,
+    .carousel-control:focus-visible,
+    .carousel-dot:focus-visible {
+      outline: var(--focus);
       outline-offset: 4px;
     }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      background: rgba(243, 230, 228, .92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--soft-line);
-    }
-
-    .nav-shell {
-      min-height: 150px;
-      max-width: 1680px;
-      margin: 0 auto;
-      padding: 22px clamp(22px, 7vw, 150px);
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: clamp(18px, 4vw, 68px);
-    }
-
-    .nav-group {
-      display: flex;
-      align-items: center;
-      gap: clamp(26px, 5vw, 84px);
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-group:last-child { justify-content: flex-end; }
-
-    .nav-link {
-      position: relative;
-      display: inline-flex;
-      padding: 10px 0;
-      font-family: var(--body);
-      font-weight: 800;
-      font-size: clamp(15px, 1.5vw, 26px);
-      text-decoration: none;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .nav-link::after {
+    .hotspot::after {
       content: "";
       position: absolute;
       left: 0;
@@ -140,284 +112,48 @@
       transition: transform 220ms ease;
     }
 
-    .nav-link:hover::after,
-    .nav-link.is-active::after,
-    .nav-link:focus-visible::after {
+    .hotspot:hover::after,
+    .hotspot:focus-visible::after {
       transform: scaleX(1);
     }
 
-    .brand-link {
-      display: grid;
-      place-items: center;
-      gap: 6px;
-      min-width: 164px;
-      text-decoration: none;
-    }
+    .pickup-link { left: 40.5%; top: 0; width: 19.2%; height: 5.55%; }
+    .menu-link { left: 8%; top: 12%; width: 5.2%; height: 4.2%; }
+    .catering-link { left: 17%; top: 12%; width: 8.2%; height: 4.2%; }
+    .locations-link { left: 29%; top: 12%; width: 9.2%; height: 4.2%; }
+    .about-link { left: 60.8%; top: 12%; width: 6.3%; height: 4.2%; }
+    .pawnerships-link { left: 70.5%; top: 12%; width: 11.5%; height: 4.2%; }
+    .contact-link { left: 84.5%; top: 12%; width: 9.2%; height: 4.2%; }
+    .logo-link { left: 44.7%; top: 6.8%; width: 10.6%; height: 11.8%; }
+    .primary-cta { left: 8.2%; top: 63%; width: 18.5%; height: 8.8%; }
+    .secondary-cta { left: 27.3%; top: 63%; width: 13.7%; height: 8.8%; }
 
-    .brand-link img {
-      width: clamp(78px, 7vw, 110px);
-      aspect-ratio: 1;
-      object-fit: contain;
-    }
-
-    .brand-wordmark {
-      font-family: var(--display);
-      font-size: clamp(20px, 2vw, 31px);
-      line-height: .9;
-      text-transform: uppercase;
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 46px;
-      height: 46px;
-      border: 2px solid var(--pearl-black);
-      border-radius: 6px;
-      background: transparent;
-      color: var(--pearl-black);
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .hero-carousel {
-      position: relative;
-      min-height: min(870px, calc(100vh - 210px));
-      isolation: isolate;
-      overflow: hidden;
-      background: var(--misty-blush);
-    }
-
-    .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 650ms ease;
-    }
-
-    .slide.is-active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .slide-inner {
-      width: min(100%, 1920px);
-      min-height: min(870px, calc(100vh - 210px));
-      margin: 0 auto;
-      padding: clamp(56px, 7vw, 132px) clamp(26px, 8vw, 160px) 94px;
-      display: grid;
-      grid-template-columns: minmax(360px, .82fr) minmax(420px, 1fr);
-      align-items: center;
-      gap: clamp(24px, 4vw, 70px);
-    }
-
-    .slide[data-theme="tote"] { background: var(--momo-pink); }
-
-    .hero-kicker,
-    .section-kicker {
-      margin: 0 0 12px;
-      font-weight: 800;
-      color: var(--momo-pink);
-      font-size: clamp(20px, 2.1vw, 36px);
-      line-height: 1.1;
-      text-transform: uppercase;
-    }
-
-    .slide[data-theme="tote"] .hero-kicker,
-    .slide[data-theme="tote"] .hero-copy,
-    .slide[data-theme="tote"] .fine-print {
-      color: var(--warm-cream);
-    }
-
-    h1,
-    h2,
-    h3 {
-      font-family: var(--display);
-      text-transform: uppercase;
-      line-height: .98;
-    }
-
-    .hero-title {
-      max-width: 920px;
-      margin: 0;
-      font-size: clamp(58px, 7.2vw, 138px);
-    }
-
-    .hero-copy {
-      width: min(100%, 840px);
-      margin: 34px 0 0;
-      color: var(--cocoa);
-      font-size: clamp(19px, 2vw, 34px);
-      line-height: 1.35;
-      letter-spacing: .04em;
-    }
-
-    .fine-print {
-      width: min(100%, 730px);
-      margin: 70px 0 0;
-      color: var(--pearl-black);
-      font-size: clamp(14px, 1.3vw, 24px);
-      line-height: 1.25;
-      font-weight: 600;
-      letter-spacing: .04em;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 54px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 68px;
-      padding: 0 38px;
-      border: 3px solid var(--pearl-black);
-      border-radius: 7px;
-      background: transparent;
-      color: var(--pearl-black);
-      font-weight: 800;
-      font-size: clamp(15px, 1.3vw, 23px);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: transform 180ms ease, background 180ms ease, color 180ms ease;
-    }
-
-    .button:hover { transform: translateY(-2px); }
-
-    .button-primary {
-      border-color: #EF9178;
-      background: #EF9178;
-      color: var(--warm-cream);
-    }
-
-    .button-dark {
-      border-color: var(--pearl-black);
-      background: var(--pearl-black);
-      color: var(--warm-cream);
-    }
-
-    .hero-media {
-      position: relative;
-      min-height: clamp(360px, 48vw, 720px);
-      display: grid;
-      place-items: center;
-    }
-
-    .product-photo {
-      width: min(100%, 820px);
-      aspect-ratio: 1.18;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: var(--shadow);
-      transform: rotate(2deg);
-    }
-
-    .slide[data-theme="tote"] .product-photo {
-      width: min(100%, 760px);
-      aspect-ratio: .95;
-      border-radius: 6px;
-      transform: rotate(5deg);
-      object-position: center;
-    }
-
-    .media-caption {
-      position: absolute;
-      right: 4%;
-      bottom: 5%;
-      max-width: 320px;
-      padding: 14px 18px;
-      border-radius: 6px;
-      background: var(--pearl-black);
-      color: var(--warm-cream);
-      font-weight: 800;
-      font-size: clamp(13px, 1.1vw, 19px);
-      line-height: 1.15;
-      text-transform: uppercase;
-      box-shadow: var(--shadow);
-    }
-
-    .value-badge {
-      position: absolute;
-      left: 0;
-      top: 33%;
-      width: clamp(116px, 9vw, 168px);
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--pearl-black);
-      color: var(--warm-cream);
-      text-align: center;
-      font-family: var(--display);
-      font-size: clamp(19px, 2vw, 34px);
-      line-height: .95;
-      text-transform: uppercase;
-      box-shadow: var(--shadow);
-    }
-
-    .value-badge small {
-      display: block;
-      margin-top: 6px;
-      font-family: var(--body);
-      font-size: .52em;
-      line-height: 1;
-    }
-
-    .feature-row {
-      display: flex;
-      gap: clamp(28px, 4vw, 72px);
-      margin-top: 70px;
-      color: var(--cocoa);
-      text-transform: uppercase;
-    }
-
-    .feature {
-      display: grid;
-      gap: 12px;
-      justify-items: center;
-      font-size: clamp(14px, 1.2vw, 22px);
-    }
-
-    .feature-mark {
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      border: 3px solid var(--pearl-black);
-      border-radius: 50%;
-      font-weight: 800;
-      color: var(--pearl-black);
-    }
-
-    .carousel-arrow {
+    .carousel-control {
       position: absolute;
       top: 50%;
-      z-index: 20;
-      width: 50px;
-      height: 58px;
-      border: 2px solid var(--pearl-black);
-      border-radius: 6px;
-      background: rgba(255, 247, 232, .78);
+      z-index: 8;
+      width: clamp(38px, 3.8vw, 58px);
+      height: clamp(44px, 4.4vw, 66px);
+      border: 2px solid rgba(51, 41, 41, .82);
+      border-radius: 4px;
+      background: rgba(255, 247, 232, .75);
       color: var(--pearl-black);
-      font-size: 30px;
+      font-size: clamp(22px, 2.2vw, 36px);
       font-weight: 800;
+      line-height: 1;
       cursor: pointer;
       transform: translateY(-50%);
     }
 
-    .carousel-arrow:hover { background: var(--warm-cream); }
-    .carousel-arrow.prev { left: 20px; }
-    .carousel-arrow.next { right: 20px; }
+    .carousel-control:hover { background: var(--warm-cream); }
+    .carousel-control.prev { left: 18px; }
+    .carousel-control.next { right: 18px; }
 
     .carousel-dots {
       position: absolute;
       left: 50%;
-      bottom: 32px;
-      z-index: 20;
+      bottom: 20px;
+      z-index: 8;
       display: flex;
       gap: 12px;
       transform: translateX(-50%);
@@ -434,410 +170,13 @@
 
     .carousel-dot.is-active { background: var(--pearl-black); }
 
-    section {
-      padding: clamp(78px, 9vw, 150px) clamp(22px, 6vw, 112px);
-    }
-
-    .section-inner {
-      width: min(100%, 1440px);
-      margin: 0 auto;
-    }
-
-    .section-title {
-      margin: 0;
-      font-size: clamp(42px, 5.2vw, 94px);
-    }
-
-    .section-copy {
-      margin: 24px 0 0;
-      color: var(--cocoa);
-      font-size: clamp(17px, 1.3vw, 22px);
-      max-width: 670px;
-    }
-
-    .about-hero {
-      display: grid;
-      grid-template-columns: minmax(320px, .72fr) minmax(420px, 1fr);
-      align-items: center;
-      gap: clamp(34px, 7vw, 120px);
-    }
-
-    .about-hero-media {
-      position: relative;
-      min-height: 440px;
-    }
-
-    .waffle-stack {
-      display: grid;
-      gap: 10px;
-      justify-items: end;
-    }
-
-    .waffle-stack img {
-      width: min(86%, 620px);
-      aspect-ratio: 1.35;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: var(--shadow);
-    }
-
-    .waffle-stack img:nth-child(2) {
-      justify-self: start;
-      width: min(64%, 410px);
-      margin-top: -62px;
-      transform: rotate(-8deg);
-    }
-
-    .editorial-line {
-      margin: 34px 0;
-      font-family: var(--editorial);
-      font-size: clamp(24px, 2.4vw, 42px);
-      line-height: 1.1;
-      color: var(--cocoa);
-    }
-
-    .story-grid {
-      display: grid;
-      grid-template-columns: minmax(300px, .62fr) minmax(360px, 1fr);
-      align-items: end;
-      gap: clamp(34px, 7vw, 110px);
-      padding-top: clamp(54px, 7vw, 104px);
-      border-top: 1px solid var(--soft-line);
-    }
-
-    .story-illustration {
-      align-self: stretch;
-      display: grid;
-      align-content: end;
-      min-height: 310px;
-      padding: 28px;
-      background: var(--warm-cream);
-      border: 2px solid var(--soft-line);
-      border-radius: 8px;
-    }
-
-    .counter-scene {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: end;
-      gap: 12px;
-    }
-
-    .counter {
-      min-height: 78px;
-      border: 3px solid var(--pearl-black);
-      border-radius: 7px 7px 0 0;
-      display: grid;
-      place-items: center;
-      font-family: var(--display);
-      font-size: 22px;
-      text-transform: uppercase;
-    }
-
-    .characters {
-      display: flex;
-      align-items: end;
-      gap: 12px;
-      font-weight: 800;
-      text-align: center;
-    }
-
-    .character {
-      width: 72px;
-      min-height: 128px;
-      display: grid;
-      place-items: center;
-      border: 3px solid var(--pearl-black);
-      border-radius: 40px 40px 28px 28px;
-      background: var(--misty-blush);
-    }
-
-    .origin-band {
-      padding: 0;
-      background: var(--pearl-black);
-      color: var(--warm-cream);
-    }
-
-    .origin-grid {
-      display: grid;
-      grid-template-columns: .7fr 1fr;
-      min-height: 520px;
-    }
-
-    .origin-grid img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .origin-copy {
-      padding: clamp(48px, 6vw, 94px);
-      display: grid;
-      align-content: center;
-    }
-
-    .origin-copy .section-kicker { color: var(--momo-pink); }
-
-    .origin-copy p {
-      max-width: 660px;
-      margin: 24px 0 0;
-      color: rgba(255, 247, 232, .86);
-      font-size: clamp(17px, 1.35vw, 24px);
-    }
-
-    .founders-grid {
-      display: grid;
-      grid-template-columns: 1fr minmax(240px, 420px) 1fr;
-      align-items: center;
-      gap: clamp(28px, 6vw, 90px);
-      text-align: left;
-    }
-
-    .founders-heading {
-      grid-column: 1 / -1;
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .founder-name {
-      margin: 6px 0 18px;
-      font-family: var(--display);
-      font-size: clamp(42px, 4vw, 72px);
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .founder-card p {
-      margin: 0;
-      color: var(--cocoa);
-      font-size: clamp(16px, 1.2vw, 20px);
-    }
-
-    .founder-art {
-      display: flex;
-      justify-content: center;
-      gap: 22px;
-      align-items: end;
-    }
-
-    .founder-art .character {
-      width: clamp(92px, 9vw, 150px);
-      min-height: clamp(170px, 16vw, 270px);
-      font-size: clamp(22px, 2vw, 38px);
-    }
-
-    .menu-section { background: var(--warm-cream); }
-
-    .section-heading-row {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 30px;
-      margin-bottom: 44px;
-    }
-
-    .menu-grid,
-    .locations-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .menu-card,
-    .location-card {
-      min-height: 100%;
-      padding: 24px;
-      border: 2px solid var(--soft-line);
-      border-radius: 8px;
-      background: var(--misty-blush);
-      box-shadow: 0 16px 36px rgba(51, 41, 41, .08);
-    }
-
-    .menu-card img {
-      width: 100%;
-      aspect-ratio: 1.3;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
-
-    .menu-card h3,
-    .location-card h3 {
-      margin: 0 0 12px;
-      font-size: clamp(24px, 2vw, 34px);
-    }
-
-    .menu-card p,
-    .location-card p {
-      margin: 0;
-      color: var(--cocoa);
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      border: 2px solid var(--momo-pink);
-      border-radius: 999px;
-      padding: 6px 12px;
-      color: var(--pearl-black);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .gallery-section { background: var(--misty-blush); }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .gallery-item {
-      position: relative;
-      border: 0;
-      padding: 0;
-      background: transparent;
-      cursor: zoom-in;
-    }
-
-    .gallery-item.wide { grid-column: span 2; }
-    .gallery-item.tall { grid-row: span 2; }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      min-height: 250px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 16px 34px rgba(51, 41, 41, .12);
-    }
-
-    .reviews-section { background: var(--warm-cream); }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .review-card {
-      padding: 30px;
-      border-radius: 8px;
-      background: var(--misty-blush);
-      border: 2px solid var(--soft-line);
-    }
-
-    .review-card blockquote {
-      margin: 0;
-      color: var(--cocoa);
-      font-family: var(--editorial);
-      font-size: clamp(22px, 1.8vw, 31px);
-      line-height: 1.15;
-    }
-
-    .review-card cite {
-      display: block;
-      margin-top: 22px;
-      font-style: normal;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .locations-section { background: var(--misty-blush); }
-
-    .location-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .location-actions .button {
-      min-height: 52px;
-      padding: 0 18px;
-      font-size: 13px;
-    }
-
-    footer {
-      padding: 52px 24px;
-      background: var(--pearl-black);
-      color: var(--warm-cream);
-      text-align: center;
-    }
-
-    .footer-logo {
-      width: 82px;
-      margin: 0 auto 16px;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 18px 28px;
-      margin: 24px 0;
-      padding: 0;
-      list-style: none;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .footer-links a {
-      text-decoration-color: transparent;
-      text-underline-offset: 5px;
-    }
-
-    .footer-links a:hover { text-decoration-color: var(--momo-pink); }
-
-    .footer-copy {
-      margin: 0;
-      color: rgba(255, 247, 232, .68);
-      font-size: 13px;
-    }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 500;
-      display: grid;
-      place-items: center;
-      padding: 28px;
-      background: rgba(51, 41, 41, .88);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 220ms ease;
-    }
-
-    .lightbox.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .lightbox-img {
-      max-width: min(100%, 980px);
-      max-height: 82vh;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
-    .lightbox-close {
+    .semantic-copy {
       position: absolute;
-      right: 22px;
-      top: 22px;
-      width: 46px;
-      height: 46px;
-      border: 2px solid var(--warm-cream);
-      border-radius: 6px;
-      background: transparent;
-      color: var(--warm-cream);
-      font-size: 28px;
-      cursor: pointer;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -847,451 +186,83 @@
         scroll-behavior: auto !important;
         transition-duration: 1ms !important;
         animation-duration: 1ms !important;
-        animation-iteration-count: 1 !important;
       }
     }
 
-    @media (max-width: 1100px) {
-      .pickup-bar { min-height: 48px; }
-
-      .nav-shell {
-        min-height: 92px;
-        grid-template-columns: auto 1fr auto;
-        padding: 12px 20px;
+    @media (max-width: 900px) {
+      .site-shell {
+        width: 100%;
+        overflow-x: auto;
       }
 
-      .brand-link {
-        grid-column: 1;
-        min-width: 0;
-        justify-items: start;
-        grid-auto-flow: column;
-        align-items: center;
+      .hero-carousel {
+        width: 1120px;
+        min-height: 627px;
       }
 
-      .brand-wordmark { font-size: 22px; }
-      .brand-link img { width: 58px; }
-
-      .menu-toggle {
-        display: block;
-        grid-column: 3;
-      }
-
-      .nav-group {
+      .carousel-control {
         position: fixed;
-        left: 0;
-        right: 0;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 0 24px;
-        background: var(--misty-blush);
+        top: auto;
+        bottom: 18px;
+        transform: none;
       }
 
-      .nav-group:first-of-type { top: 140px; padding-top: 20px; }
-      .nav-group:last-of-type { top: 334px; padding-bottom: 28px; border-bottom: 1px solid var(--soft-line); }
-      .site-header.is-open .nav-group { display: flex; }
-      .nav-link { font-size: 22px; }
-
-      .slide-inner {
-        min-height: calc(100vh - 140px);
-        grid-template-columns: 1fr;
-        padding: 46px 28px 82px;
+      .carousel-dots {
+        position: fixed;
+        bottom: 42px;
       }
-
-      .hero-media {
-        min-height: 330px;
-        order: -1;
-      }
-
-      .product-photo { width: min(76vw, 560px); }
-
-      .feature-row {
-        margin-top: 34px;
-        gap: 20px;
-      }
-
-      .carousel-arrow { display: none; }
-
-      .about-hero,
-      .story-grid,
-      .origin-grid,
-      .founders-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .founders-heading { text-align: left; }
-      .founder-art { order: -1; }
-
-      .menu-grid,
-      .locations-grid,
-      .reviews-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 620px) {
-      .hero-title { font-size: clamp(44px, 15vw, 76px); }
-      .hero-copy { font-size: 18px; letter-spacing: 0; }
-      .fine-print { margin-top: 28px; letter-spacing: 0; }
-      .hero-actions { margin-top: 32px; }
-      .button { width: 100%; min-height: 58px; }
-      .feature-row { flex-wrap: wrap; justify-content: center; }
-      .media-caption { right: 0; bottom: 0; }
-      .value-badge { left: auto; right: 0; top: 18%; }
-      .section-heading-row { display: block; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item.wide,
-      .gallery-item.tall { grid-column: auto; grid-row: auto; }
-      .nav-group:first-of-type { top: 140px; }
-      .nav-group:last-of-type { top: 334px; }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <a class="pickup-bar" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pickup --&gt;</a>
-
-  <header class="site-header" id="site-header">
-    <nav class="nav-shell" aria-label="Primary navigation">
-      <ul class="nav-group">
-        <li><a class="nav-link is-active" href="#menu">Menu</a></li>
-        <li><a class="nav-link" href="#catering">Catering</a></li>
-        <li><a class="nav-link" href="#locations">Locations</a></li>
-      </ul>
-      <a class="brand-link" href="#" aria-label="Momo Ashi home">
-        <img src="brand assets/momologo.png" alt="" />
-        <span class="brand-wordmark">momo ashi</span>
-      </a>
-      <ul class="nav-group">
-        <li><a class="nav-link" href="#about">About</a></li>
-        <li><a class="nav-link" href="#pawnerships">Pawnerships</a></li>
-        <li><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-header">Menu</button>
-    </nav>
-  </header>
-
-  <main id="main">
-    <section class="hero-carousel" aria-label="Featured Momo Ashi promotions">
-      <article class="slide is-active" data-theme="wamochi">
-        <div class="slide-inner">
-          <div class="hero-content">
-            <h1 class="hero-title">Where comfort takes flavor</h1>
-            <div class="hero-actions">
-              <a class="button button-primary" href="#menu">Explore the menu</a>
-              <a class="button" href="#about">Behind the paw</a>
-            </div>
-            <div class="feature-row" aria-label="Wamochi qualities">
-              <span class="feature"><span class="feature-mark">C</span>Crispy outside</span>
-              <span class="feature"><span class="feature-mark">W</span>Chewy inside</span>
-              <span class="feature"><span class="feature-mark">G</span>Gluten-free</span>
-            </div>
-          </div>
-          <div class="hero-media" aria-hidden="true">
-            <img class="product-photo" src="gallery pics/9.jpg" alt="" />
-            <span class="media-caption">Fresh wamochi, signature paw center</span>
-          </div>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <main class="site-shell" id="content">
+    <section class="hero-carousel" aria-label="Momo Ashi featured slides">
+      <article class="reference-slide is-active">
+        <img src="reference assets/home-reference.jpg" alt="Momo Ashi Wamochi hero with headline Where comfort takes flavor" />
+        <div class="semantic-copy">
+          <h1>Where comfort takes flavor</h1>
+          <p>Crispy outside. Chewy inside. Gluten-free.</p>
+        </div>
+      </article>
+      <article class="reference-slide">
+        <img src="reference assets/tote-reference.jpg" alt="Momo Ashi Mystery Paw Tote in-store exclusive promotion" />
+        <div class="semantic-copy">
+          <h2>You can never have too many totes</h2>
+          <p>Join Paw Points in store and spend $25+ in one transaction to receive a Mystery Paw Tote.</p>
+          <p>Four designs. Random selection. One tote per transaction of $25+ before tax. While supplies last.</p>
         </div>
       </article>
 
-      <article class="slide" data-theme="tote">
-        <div class="slide-inner">
-          <div class="hero-content">
-            <p class="hero-kicker">In-store exclusive</p>
-            <h2 class="hero-title">You can never have too many totes</h2>
-            <p class="hero-copy">Join Paw Points in store and spend $25+ in one transaction to receive a Mystery Paw Tote.</p>
-            <p class="fine-print">Four designs. Random selection. One tote per transaction of $25+ before tax. While supplies last.</p>
-          </div>
-          <div class="hero-media" aria-hidden="true">
-            <img class="product-photo" src="gallery pics/7.jpg" alt="" />
-            <span class="value-badge">$20 <small>retail value</small></span>
-          </div>
-        </div>
-      </article>
+      <a class="hotspot pickup-link" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pickup</a>
+      <a class="hotspot menu-link" href="#menu">Menu</a>
+      <a class="hotspot catering-link" href="#catering">Catering</a>
+      <a class="hotspot locations-link" href="#locations">Locations</a>
+      <a class="hotspot logo-link" href="index.html">Momo Ashi home</a>
+      <a class="hotspot about-link" href="about.html">About</a>
+      <a class="hotspot pawnerships-link" href="#pawnerships">Pawnerships</a>
+      <a class="hotspot contact-link" href="#contact">Contact</a>
+      <a class="hotspot primary-cta" href="#menu">Explore the menu</a>
+      <a class="hotspot secondary-cta" href="about.html">Behind the paw</a>
 
-      <button class="carousel-arrow prev" type="button" aria-label="Previous slide">&lt;</button>
-      <button class="carousel-arrow next" type="button" aria-label="Next slide">&gt;</button>
+      <button class="carousel-control prev" type="button" aria-label="Previous slide">&lt;</button>
+      <button class="carousel-control next" type="button" aria-label="Next slide">&gt;</button>
       <div class="carousel-dots" role="tablist" aria-label="Hero slides"></div>
-    </section>
-
-    <section class="about-section" id="about">
-      <div class="section-inner about-hero">
-        <div>
-          <p class="section-kicker">Our story</p>
-          <h2 class="section-title">Behind the paw</h2>
-          <p class="editorial-line">It all started with a gentle press.</p>
-          <p class="section-copy">Momo Ashi turns the joyful shape of a cat or dog's paw into food you can hold: handcrafted drinks, savory snacks, sweet toast, and warm Wamochi made for everyday comfort.</p>
-        </div>
-        <div class="about-hero-media" aria-hidden="true">
-          <div class="waffle-stack">
-            <img src="gallery pics/9.jpg" alt="" />
-            <img src="gallery pics/8.jpg" alt="" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-inner story-grid">
-        <div>
-          <p class="editorial-line">"We wondered what comfort would taste like"</p>
-          <p class="section-copy">Inspired by the irresistible joy of gently pressing a paw, Momo Ashi became a place where playful ideas, handcrafted flavors, and everyday comfort come together, leaving a little paw print in the day.</p>
-        </div>
-        <div class="story-illustration" aria-hidden="true">
-          <div class="counter-scene">
-            <div class="counter">momo</div>
-            <div class="characters">
-              <span class="character">M</span>
-              <span class="character">A</span>
-            </div>
-            <div class="counter">ashi</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="origin-band">
-      <div class="origin-grid">
-        <img src="gallery pics/1.jpg" alt="Wamochi and Momo Ashi drink at the shop" />
-        <div class="origin-copy">
-          <p class="section-kicker">The origin of Wamochi</p>
-          <h2 class="section-title">Turning comfort into flavor</h2>
-          <p>Wamochi is our take on the mochi waffle: lightly crisp outside and soft, satisfying, and chewy inside.</p>
-          <p>Every Wamochi is made fresh using our custom paw-shaped waffle press, creating golden edges and our signature paw at the center.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-inner founders-grid">
-        <p class="section-kicker founders-heading">Meet the founders in spirit</p>
-        <div class="founder-card">
-          <p class="section-kicker">The cat</p>
-          <h3 class="founder-name">Momo</h3>
-          <p>Cool, calm, and selectively social. Momo takes quality control seriously and believes comfort is a way of life.</p>
-        </div>
-        <div class="founder-art" aria-hidden="true">
-          <span class="character">M</span>
-          <span class="character">A</span>
-        </div>
-        <div class="founder-card">
-          <p class="section-kicker">The dog</p>
-          <h3 class="founder-name">Ashi</h3>
-          <p>Squishy, stubborn, and all heart. Ashi is always ready for a snack and believes in the power of pawsitivity.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="menu-section" id="menu">
-      <div class="section-inner">
-        <div class="section-heading-row">
-          <div>
-            <p class="section-kicker">What we serve</p>
-            <h2 class="section-title">More to love</h2>
-          </div>
-          <p class="section-copy">From Wamochi and handcrafted drinks to sweet and savory comfort.</p>
-        </div>
-        <div class="menu-grid">
-          <article class="menu-card">
-            <img src="gallery pics/9.jpg" alt="Matcha Wamochi and Momo Ashi drink" />
-            <h3>Wamochi</h3>
-            <p>Paw-shaped mochi waffles with crisp edges and a chewy center.</p>
-            <div class="tag-row"><span class="tag">Crispy</span><span class="tag">Chewy</span></div>
-          </article>
-          <article class="menu-card">
-            <img src="gallery pics/5.jpg" alt="Onigiri and boba on a pink tray" />
-            <h3>Rice wraps</h3>
-            <p>Savory, portable snacks that pair beautifully with milk tea.</p>
-            <div class="tag-row"><span class="tag">Savory</span><span class="tag">Snackable</span></div>
-          </article>
-          <article class="menu-card">
-            <img src="gallery pics/3.jpg" alt="Sweet toast with toasted marshmallow" />
-            <h3>Sweet toast</h3>
-            <p>Warm, indulgent toast creations for sharing or keeping all to yourself.</p>
-            <div class="tag-row"><span class="tag">Sweet</span><span class="tag">Warm</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="gallery-section" id="pawnerships">
-      <div class="section-inner">
-        <div class="section-heading-row">
-          <div>
-            <p class="section-kicker">Paw points and merch</p>
-            <h2 class="section-title">Tiny treats, big feelings</h2>
-          </div>
-          <a class="button" href="https://www.instagram.com/momoashi/?hl=en" target="_blank" rel="noopener">Follow @momoashi</a>
-        </div>
-        <div class="gallery-grid">
-          <button class="gallery-item tall" type="button" data-label="Boba and the wall"><img src="gallery pics/1.jpg" alt="Boba drink in front of the Momo Ashi mural" /></button>
-          <button class="gallery-item wide" type="button" data-label="Matcha waffle vibes"><img src="gallery pics/9.jpg" alt="Matcha waffle and Momo Ashi cup" /></button>
-          <button class="gallery-item" type="button" data-label="Onigiri and boba"><img src="gallery pics/5.jpg" alt="Onigiri and boba on a pink tray" /></button>
-          <button class="gallery-item" type="button" data-label="The jelly bar"><img src="gallery pics/4.jpg" alt="Jelly topping options" /></button>
-          <button class="gallery-item" type="button" data-label="Merch drop"><img src="gallery pics/7.jpg" alt="Momo Ashi branded bottle and tote bag" /></button>
-          <button class="gallery-item" type="button" data-label="Momo mugs"><img src="gallery pics/10.jpg" alt="Branded Momo Ashi cups" /></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="reviews-section" id="catering">
-      <div class="section-inner">
-        <div class="section-heading-row">
-          <div>
-            <p class="section-kicker">For groups</p>
-            <h2 class="section-title">Catering the comfort</h2>
-          </div>
-          <p class="section-copy">Bring Momo Ashi drinks, snacks, and Wamochi to celebrations, office treats, and neighborhood gatherings.</p>
-        </div>
-        <div class="reviews-grid">
-          <article class="review-card">
-            <blockquote>"Handcrafted drinks, chewy pearls, and snacks that make the whole table happier."</blockquote>
-            <cite>Tea service</cite>
-          </article>
-          <article class="review-card">
-            <blockquote>"Sweet toast and Wamochi make a playful centerpiece for casual events."</blockquote>
-            <cite>Snack trays</cite>
-          </article>
-          <article class="review-card">
-            <blockquote>"A little pink, a little paw-shaped, and very easy to love."</blockquote>
-            <cite>Party orders</cite>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="locations-section" id="locations">
-      <div class="section-inner">
-        <div class="section-heading-row">
-          <div>
-            <p class="section-kicker">Find us</p>
-            <h2 class="section-title">Three locations in NYC</h2>
-          </div>
-          <p class="section-copy">Walk in, order pickup, or come say hello at Bayside, Flushing, or Woodside.</p>
-        </div>
-        <div class="locations-grid">
-          <article class="location-card">
-            <h3>Bayside</h3>
-            <p>40-06 Bell Blvd<br />Bayside, NY 11361</p>
-            <p>Mon-Thur 1:00pm-11:00pm<br />Fri-Sat 12:00pm-11:00pm<br />Sun 1:00pm-11:00pm</p>
-            <p>718-819-8848</p>
-            <div class="location-actions">
-              <a class="button button-dark" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order online</a>
-              <a class="button" href="https://www.google.com/maps/place/Momo+Ashi/@40.7639921,-73.7715154,17z/data=!3m1!4b1!4m6!3m5!1s0x89c26197120713c1:0x3f5bf08422bb01a1!8m2!3d40.7639921!4d-73.7715154!16s%2Fg%2F11p65wz4y4?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Google Maps</a>
-            </div>
-          </article>
-          <article class="location-card">
-            <h3>Flushing</h3>
-            <p>147-05 45th Ave<br />Flushing, NY 11355</p>
-            <p>Mon-Sun 11:30am-8:00pm</p>
-            <div class="location-actions">
-              <a class="button button-dark" href="https://order.mealkeyway.com/customer/release/index?mid=7944367672514974656b2f777331556b302b46364a673d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order online</a>
-              <a class="button" href="https://www.google.com/maps/place/Momo+Ashi+Flushing/@40.7556442,-73.8151292,17z/data=!3m1!4b1!4m6!3m5!1s0x89c261bbf605581b:0xd2436e3d0dffd92!8m2!3d40.7556442!4d-73.8151292!16s%2Fg%2F11rn5ccgny?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Google Maps</a>
-            </div>
-          </article>
-          <article class="location-card">
-            <h3>Woodside</h3>
-            <p>60-11 Roosevelt Ave<br />Woodside, NY 11377</p>
-            <p>Mon-Sun 11:30am-8:00pm</p>
-            <p>929-614-5721</p>
-            <div class="location-actions">
-              <a class="button button-dark" href="https://order.mealkeyway.com/customer/release/index?mid=554369345250396e6a6a644a3347445130554d6f49773d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order online</a>
-              <a class="button" href="https://www.google.com/maps/place/Momo+Ashi+Woodside/@40.7457032,-73.9038449,17z/data=!3m1!4b1!4m6!3m5!1s0x89c25f8870cea99f:0xdf9b478ca37e0222!8m2!3d40.7457032!4d-73.9038449!16s%2Fg%2F11k3qn9skm?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Google Maps</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="menu-section" id="contact">
-      <div class="section-inner">
-        <div class="section-heading-row">
-          <div>
-            <p class="section-kicker">Contact</p>
-            <h2 class="section-title">Come by for pickup</h2>
-          </div>
-          <a class="button button-primary" href="https://www.instagram.com/momoashi/?hl=en" target="_blank" rel="noopener">Message on Instagram</a>
-        </div>
-      </div>
     </section>
   </main>
 
-  <footer>
-    <img class="footer-logo" src="brand assets/momologo.png" alt="Momo Ashi logo" />
-    <nav aria-label="Footer navigation">
-      <ul class="footer-links">
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#catering">Catering</a></li>
-        <li><a href="#locations">Locations</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#pawnerships">Pawnerships</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <p class="footer-copy">Copyright Momo Ashi Tea &amp; Snack Bar. New York City. Made by <a href="https://www.novusnyc.org/" target="_blank" rel="noopener">Novus</a>.</p>
-  </footer>
-
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close">&times;</button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
-  </div>
-
   <script>
-    const header = document.getElementById("site-header");
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelectorAll(".nav-link");
-
-    menuToggle.addEventListener("click", () => {
-      const isOpen = header.classList.toggle("is-open");
-      document.body.classList.toggle("menu-open", isOpen);
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        header.classList.remove("is-open");
-        document.body.classList.remove("menu-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    const sectionLinks = Array.from(navLinks).filter((link) => link.hash);
-    const linkedSections = sectionLinks
-      .map((link) => document.querySelector(link.hash))
-      .filter(Boolean);
-
-    function setActiveLink(sectionId) {
-      sectionLinks.forEach((link) => {
-        link.classList.toggle("is-active", link.hash === "#" + sectionId);
-      });
-    }
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible) setActiveLink(visible.target.id);
-    }, {
-      rootMargin: "-35% 0px -50% 0px",
-      threshold: [.08, .2, .45]
-    });
-
-    linkedSections.forEach((section) => sectionObserver.observe(section));
-
-    const carousel = document.querySelector(".hero-carousel");
-    const slides = Array.from(document.querySelectorAll(".slide"));
-    const prev = document.querySelector(".carousel-arrow.prev");
-    const next = document.querySelector(".carousel-arrow.next");
+    const slides = Array.from(document.querySelectorAll(".reference-slide"));
     const dotsWrap = document.querySelector(".carousel-dots");
+    const previousButton = document.querySelector(".carousel-control.prev");
+    const nextButton = document.querySelector(".carousel-control.next");
+    const carousel = document.querySelector(".hero-carousel");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let currentSlide = 0;
     let timer = null;
     let touchStartX = 0;
 
-    function setSlide(index) {
+    function showSlide(index) {
       currentSlide = (index + slides.length) % slides.length;
       slides.forEach((slide, slideIndex) => {
         slide.classList.toggle("is-active", slideIndex === currentSlide);
@@ -1302,83 +273,55 @@
       });
     }
 
-    function stopCarousel() {
+    function stopTimer() {
       if (timer) window.clearInterval(timer);
       timer = null;
     }
 
-    function startCarousel() {
+    function startTimer() {
       if (reduceMotion || slides.length < 2) return;
-      stopCarousel();
-      timer = window.setInterval(() => setSlide(currentSlide + 1), 6500);
+      stopTimer();
+      timer = window.setInterval(() => showSlide(currentSlide + 1), 6500);
     }
 
-    slides.forEach((_, index) => {
+    slides.forEach((slide, index) => {
       const dot = document.createElement("button");
       dot.type = "button";
       dot.className = "carousel-dot";
       dot.setAttribute("role", "tab");
       dot.setAttribute("aria-label", "Show slide " + (index + 1));
       dot.addEventListener("click", () => {
-        setSlide(index);
-        startCarousel();
+        showSlide(index);
+        startTimer();
       });
       dotsWrap.appendChild(dot);
     });
 
-    prev.addEventListener("click", () => {
-      setSlide(currentSlide - 1);
-      startCarousel();
+    previousButton.addEventListener("click", () => {
+      showSlide(currentSlide - 1);
+      startTimer();
     });
 
-    next.addEventListener("click", () => {
-      setSlide(currentSlide + 1);
-      startCarousel();
+    nextButton.addEventListener("click", () => {
+      showSlide(currentSlide + 1);
+      startTimer();
     });
 
-    carousel.addEventListener("mouseenter", stopCarousel);
-    carousel.addEventListener("mouseleave", startCarousel);
+    carousel.addEventListener("mouseenter", stopTimer);
+    carousel.addEventListener("mouseleave", startTimer);
     carousel.addEventListener("touchstart", (event) => {
       touchStartX = event.changedTouches[0].clientX;
     }, { passive: true });
     carousel.addEventListener("touchend", (event) => {
       const distance = event.changedTouches[0].clientX - touchStartX;
       if (Math.abs(distance) > 45) {
-        setSlide(currentSlide + (distance < 0 ? 1 : -1));
-        startCarousel();
+        showSlide(currentSlide + (distance < 0 ? 1 : -1));
+        startTimer();
       }
     }, { passive: true });
 
-    setSlide(0);
-    startCarousel();
-
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const lightboxClose = document.getElementById("lightbox-close");
-
-    document.querySelectorAll(".gallery-item").forEach((button) => {
-      button.addEventListener("click", () => {
-        const img = button.querySelector("img");
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add("open");
-        document.body.style.overflow = "hidden";
-      });
-    });
-
-    function closeLightbox() {
-      lightbox.classList.remove("open");
-      lightboxImg.src = "";
-      document.body.style.overflow = "";
-    }
-
-    lightboxClose.addEventListener("click", closeLightbox);
-    lightbox.addEventListener("click", (event) => {
-      if (event.target === lightbox) closeLightbox();
-    });
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeLightbox();
-    });
+    showSlide(0);
+    startTimer();
   </script>
 </body>
 </html>
