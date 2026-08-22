@@ -5,134 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Momo Ashi | Behind the Paw</title>
   <link rel="icon" type="image/png" href="brand assets/momologo.png" />
-  <style>
-    :root {
-      --misty-blush: #F3E6E4;
-      --momo-pink: #EB92A4;
-      --pearl-black: #332929;
-      --warm-cream: #FFF7E8;
-    }
-
-    * { box-sizing: border-box; }
-
-    html,
-    body {
-      margin: 0;
-      min-width: 320px;
-      background: var(--misty-blush);
-      color: var(--pearl-black);
-      font-family: system-ui, sans-serif;
-    }
-
-    img { display: block; max-width: 100%; }
-
-    .skip-link {
-      position: fixed;
-      left: 16px;
-      top: 16px;
-      z-index: 20;
-      transform: translateY(-140%);
-      background: var(--pearl-black);
-      color: var(--warm-cream);
-      padding: 10px 14px;
-      border-radius: 4px;
-      font-weight: 800;
-    }
-
-    .skip-link:focus { transform: translateY(0); }
-
-    .reference-page {
-      position: relative;
-      width: min(100%, 1920px);
-      margin: 0 auto;
-      background: var(--misty-blush);
-    }
-
-    .reference-page img {
-      width: 100%;
-      height: auto;
-    }
-
-    .hotspot {
-      position: absolute;
-      z-index: 5;
-      display: block;
-      border-radius: 4px;
-      color: transparent;
-      overflow: hidden;
-      text-indent: -9999px;
-    }
-
-    .hotspot:focus-visible {
-      outline: 3px solid var(--pearl-black);
-      outline-offset: 4px;
-    }
-
-    .hotspot::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 4px;
-      height: 4px;
-      background: var(--momo-pink);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 220ms ease;
-    }
-
-    .hotspot:hover::after,
-    .hotspot:focus-visible::after {
-      transform: scaleX(1);
-    }
-
-    .semantic-copy {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
-    }
-
-    .pickup-link { left: 40.4%; top: 0; width: 19.2%; height: 1.72%; }
-    .menu-link { left: 8%; top: 3.87%; width: 5.4%; height: 1.38%; }
-    .catering-link { left: 17%; top: 3.87%; width: 8.4%; height: 1.38%; }
-    .locations-link { left: 29%; top: 3.87%; width: 9.4%; height: 1.38%; }
-    .logo-link { left: 44.7%; top: 1.7%; width: 10.8%; height: 4%; }
-    .about-link { left: 60.8%; top: 3.87%; width: 6.3%; height: 1.38%; }
-    .pawnerships-link { left: 70.5%; top: 3.87%; width: 11.8%; height: 1.38%; }
-    .contact-link { left: 84.5%; top: 3.87%; width: 9.4%; height: 1.38%; }
-    .location-cta { left: 7%; top: 94.3%; width: 11.8%; height: 1.1%; }
-
-    @media (max-width: 900px) {
-      body { overflow-x: auto; }
-      .reference-page { width: 1120px; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
 </head>
 <body>
-  <a class="skip-link" href="#content">Skip to content</a>
-  <main class="reference-page" id="content">
-    <img src="reference assets/about-reference.jpg" alt="Momo Ashi About page with Behind the Paw story, Wamochi origin, Momo and Ashi founders, and More to Love section" />
-    <div class="semantic-copy">
-      <h1>Behind the paw</h1>
-      <p>It all started with a gentle press.</p>
-      <p>We wondered what comfort would taste like.</p>
-      <h2>Turning comfort into flavor</h2>
-      <p>Wamochi is our take on the mochi waffle, lightly crisp outside and soft and satisfyingly chewy inside.</p>
-      <h2>More to love</h2>
-      <p>From Wamochi and handcrafted drinks to sweet and savory comfort.</p>
-    </div>
-    <a class="hotspot pickup-link" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pickup</a>
-    <a class="hotspot menu-link" href="menu.html">Menu</a>
-    <a class="hotspot catering-link" href="catering.html">Catering</a>
-    <a class="hotspot locations-link" href="locations.html">Locations</a>
-    <a class="hotspot logo-link" href="index.html">Momo Ashi home</a>
-    <a class="hotspot about-link" href="about.html">About</a>
-    <a class="hotspot pawnerships-link" href="pawnerships.html">Pawnerships</a>
-    <a class="hotspot contact-link" href="contact.html">Contact</a>
-    <a class="hotspot location-cta" href="locations.html">Find a location</a>
+  <a class="pickup-bar" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pick up --&gt;</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <ul class="nav-group"><li><a class="nav-link" href="menu.html">Menu</a></li><li><a class="nav-link" href="catering.html">Catering</a></li><li><a class="nav-link" href="locations.html">Locations</a></li></ul>
+    <a class="brand-link" href="index.html" aria-label="Momo Ashi home"><img src="brand assets/momologo.png" alt="" /><span class="brand-wordmark">momo ashi</span></a>
+    <ul class="nav-group"><li><a class="nav-link is-active" href="about.html">About</a></li><li><a class="nav-link" href="pawnerships.html">Pawnerships</a></li><li><a class="nav-link" href="contact.html">Contact</a></li></ul>
+  </nav>
+
+  <main>
+    <section class="about-live-hero section-reveal">
+      <div>
+        <p class="page-kicker">Our story</p>
+        <h1 class="page-title">Behind<br />the paw</h1>
+        <p class="editorial-line">It all started with a gentle press.</p>
+        <div class="heart-placeholder">Momo + Ashi art</div>
+      </div>
+      <div class="about-stack" aria-label="Stacked Wamochi photos">
+        <img src="gallery pics/9.jpg" alt="Matcha Wamochi and Momo Ashi drink" />
+        <img src="gallery pics/8.jpg" alt="Wamochi close up" />
+        <img src="gallery pics/10.jpg" alt="Branded Momo Ashi cups" />
+        <span class="about-image-caption">Seven flavors. One signature paw</span>
+      </div>
+    </section>
+
+    <section class="content-band about-quote-band section-reveal">
+      <div class="split-layout">
+        <div>
+          <p class="editorial-line">"We wondered<br />what comfort<br />would taste like"</p>
+          <p class="section-copy">Inspired by the irresistible joy of gently pressing a cat's or dog's paw, we set out to turn that feeling into something you could taste. Momo Ashi is a place where playful ideas, handcrafted flavors, and everyday comfort come together, leaving a little paw print in your day.</p>
+        </div>
+        <div class="illustration-stage reveal-item" aria-label="Placeholder kitchen illustration">
+          <div class="counter-scene reference-like">
+            <div class="prep-counter">momo ashi</div>
+            <div class="characters">
+              <span class="character placeholder" data-name="A"></span>
+              <span class="character placeholder" data-name="M"></span>
+            </div>
+            <div class="prep-counter">momo ashi</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="origin-band section-reveal">
+      <div class="origin-grid">
+        <img src="gallery pics/1.jpg" alt="Wamochi and Momo Ashi drink at the shop" />
+        <div class="origin-copy">
+          <p class="section-kicker">The origin of Wamochi</p>
+          <h2 class="section-title">Turning comfort into flavor</h2>
+          <p>Wamochi is our take on the mochi waffle, lightly crisp on the outside and soft and satisfyingly chewy on the inside.</p>
+          <p>Every Wamochi is made fresh using our custom paw-shaped waffle press, creating golden, crisp edges and our signature paw at the center.</p>
+          <p>It's this contrast of textures that makes Wamochi special: a warm, delicate crunch gives way to a dense, chewy mochi center.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band section-reveal">
+      <div class="founders-grid reference-like">
+        <p class="section-kicker founders-heading">Meet the founders in spirit</p>
+        <div class="founder-card reveal-item">
+          <p class="section-kicker">The cat</p>
+          <h2 class="founder-name">Momo</h2>
+          <p>Cool, calm, and selectively social. Momo takes quality control seriously and believes comfort is a way of life.</p>
+        </div>
+        <div class="founder-art reveal-item" aria-label="Placeholder Momo and Ashi characters">
+          <span class="character placeholder" data-name="M"></span>
+          <span class="character placeholder" data-name="A"></span>
+        </div>
+        <div class="founder-card reveal-item">
+          <p class="section-kicker">The dog</p>
+          <h2 class="founder-name">Ashi</h2>
+          <p>Squishy, stubborn, and all heart. Ashi is always ready for a snack and believes in the power of pawsitivity.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-more section-reveal">
+      <img src="gallery pics/2.jpg" alt="" />
+      <div class="about-more-copy">
+        <p class="page-kicker">More to Momo Ashi</p>
+        <h2 class="section-title">More to love.</h2>
+        <p class="section-copy">From Wamochi and handcrafted drinks to sweet and savory comfort.</p>
+        <div class="button-row"><a class="button button-primary" href="locations.html">Find a location --&gt;</a></div>
+      </div>
+    </section>
   </main>
+
+  <script src="scroll-animations.js"></script>
 </body>
 </html>
