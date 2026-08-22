@@ -26,7 +26,10 @@
         <p class="page-copy">Questions about pickup, catering, rewards, or locations? Reach out or visit your nearest Momo Ashi.</p>
         <div class="button-row"><a class="button button-primary" href="https://www.instagram.com/momoashi/?hl=en" target="_blank" rel="noopener">Instagram</a><a class="button" href="locations.html">Find us</a></div>
       </div>
-      <div class="page-media"><img src="gallery pics/1.jpg" alt="Momo Ashi cup in front of mural" /></div>
+      <div class="page-media">
+        <img src="gallery pics/1.jpg" alt="Momo Ashi cup in front of mural" />
+        <img class="mascot-sticker bottom-left" src="brand assets/momologo.png" alt="" />
+      </div>
     </section>
 
     <section class="content-band cream-band section-reveal">
@@ -38,13 +41,45 @@
     </section>
 
     <section class="content-band dark-band section-reveal">
-      <div class="split-layout">
-        <p class="editorial-line">"Walk in, order pickup, or send a note."</p>
+      <div class="contact-layout">
         <div>
-          <h2 class="section-title">For catering</h2>
-          <p class="section-copy">For group orders, include your preferred pickup location, date, time, guest count, and any menu items you already have in mind.</p>
-          <div class="button-row"><a class="button button-primary" href="catering.html">Catering info</a></div>
+          <p class="editorial-line">"Walk in, order pickup, or send a note."</p>
+          <p class="section-copy">For catering or group orders, include your preferred pickup location, date, time, guest count, and any menu items you already have in mind.</p>
         </div>
+        <form class="contact-form" data-contact-form>
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic">
+                <option>General question</option>
+                <option>Catering</option>
+                <option>Pickup order</option>
+                <option>Pawnerships</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <p class="form-note">Share a few details and the best way to reach you.</p>
+          <p class="form-success" data-form-success>Thanks. Your note is ready for the Momo Ashi team.</p>
+          <button class="button button-primary" type="submit">Send message</button>
+        </form>
       </div>
     </section>
   </main>
@@ -59,5 +94,16 @@
     <div class="footer-bottom">Copyright Momo Ashi Tea &amp; Snack Bar. New York City. Made by <a href="https://www.novusnyc.org/" target="_blank" rel="noopener">Novus</a>.</div>
   </footer>
   <script src="scroll-animations.js"></script>
+  <script>
+    const contactForm = document.querySelector("[data-contact-form]");
+    const successMessage = document.querySelector("[data-form-success]");
+    if (contactForm && successMessage) {
+      contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        successMessage.classList.add("is-visible");
+        contactForm.reset();
+      });
+    }
+  </script>
 </body>
 </html>
