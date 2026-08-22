@@ -101,6 +101,12 @@
       justify-content: flex-end;
     }
 
+    .mobile-menu-toggle,
+    .mobile-order-cta,
+    .mobile-nav-panel {
+      display: none;
+    }
+
     .nav-link {
       position: relative;
       display: inline-flex;
@@ -519,12 +525,102 @@
         height: 46px;
       }
 
-      .nav-logo img {
-        width: 190px;
+      .about-nav {
+        grid-template-columns: 48px minmax(0, 1fr) 58px;
+        gap: 10px;
+        padding-block: 16px 18px;
       }
 
-      .nav-link {
-        font-size: 15px;
+      .nav-list {
+        display: none;
+      }
+
+      .nav-logo {
+        order: 0;
+      }
+
+      .nav-logo img {
+        width: 156px;
+      }
+
+      .mobile-menu-toggle,
+      .mobile-order-cta {
+        min-width: 44px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .mobile-menu-toggle {
+        flex-direction: column;
+        gap: 5px;
+        justify-self: start;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .mobile-menu-toggle span {
+        width: 25px;
+        height: 4px;
+        border-radius: 999px;
+        background: var(--ink);
+        transition: transform 180ms ease, opacity 180ms ease;
+      }
+
+      .about-nav.is-open .mobile-menu-toggle span:first-child {
+        transform: translateY(9px) rotate(45deg);
+      }
+
+      .about-nav.is-open .mobile-menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .about-nav.is-open .mobile-menu-toggle span:last-child {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+
+      .mobile-order-cta {
+        justify-self: end;
+        border: 3px solid var(--ink);
+        border-radius: 999px;
+        padding: 0 13px;
+        font-family: var(--display);
+        font-size: 11px;
+        line-height: 1;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .mobile-nav-panel:not([hidden]) {
+        grid-column: 1 / -1;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding-top: 16px;
+      }
+
+      .mobile-nav-link {
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgba(51, 41, 41, .2);
+        color: var(--ink);
+        font-family: var(--display);
+        font-size: 14px;
+        line-height: 1;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .mobile-nav-link.is-active {
+        border-color: var(--accent);
+        background: rgba(235, 146, 164, .18);
       }
 
       .hero-section,
@@ -556,6 +652,11 @@
   <div class="about-page">
     <a class="pickup-strip" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pick up --&gt;</a>
     <nav class="about-nav content" aria-label="Primary navigation">
+      <button class="mobile-menu-toggle" type="button" aria-controls="mobile-nav-panel" aria-expanded="false" aria-label="Open navigation menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
       <ul class="nav-list">
         <li><a class="nav-link" href="menu.html">Menu</a></li>
         <li><a class="nav-link" href="catering.html">Catering</a></li>
@@ -569,6 +670,15 @@
         <li><a class="nav-link" href="pawnerships.html">Pawnerships</a></li>
         <li><a class="nav-link" href="contact.html">Contact</a></li>
       </ul>
+      <a class="mobile-order-cta" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order</a>
+      <div class="mobile-nav-panel" id="mobile-nav-panel" hidden>
+        <a class="mobile-nav-link" href="menu.html">Menu</a>
+        <a class="mobile-nav-link" href="catering.html">Catering</a>
+        <a class="mobile-nav-link" href="locations.html">Locations</a>
+        <a class="mobile-nav-link is-active" href="about.html">About</a>
+        <a class="mobile-nav-link" href="pawnerships.html">Pawnerships</a>
+        <a class="mobile-nav-link" href="contact.html">Contact</a>
+      </div>
     </nav>
 
     <main id="main">
@@ -638,5 +748,34 @@
       </section>
     </main>
   </div>
+  <script>
+    const aboutNav = document.querySelector(".about-nav");
+    const mobileToggle = document.querySelector(".mobile-menu-toggle");
+    const mobilePanel = document.querySelector("#mobile-nav-panel");
+
+    if (aboutNav && mobileToggle && mobilePanel) {
+      const setMobileMenu = (isOpen) => {
+        aboutNav.classList.toggle("is-open", isOpen);
+        mobileToggle.setAttribute("aria-expanded", String(isOpen));
+        mobilePanel.hidden = !isOpen;
+      };
+
+      mobileToggle.addEventListener("click", () => {
+        setMobileMenu(mobileToggle.getAttribute("aria-expanded") !== "true");
+      });
+
+      mobilePanel.addEventListener("click", (event) => {
+        if (event.target.closest("a")) setMobileMenu(false);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setMobileMenu(false);
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.matchMedia("(min-width: 641px)").matches) setMobileMenu(false);
+      });
+    }
+  </script>
 </body>
 </html>
