@@ -5,30 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Momo Ashi | Behind the Paw</title>
   <link rel="icon" type="image/png" href="brand assets/momologo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --misty-blush: #F3E6E4;
-      --momo-pink: #EB92A4;
-      --pearl-black: #332929;
-      --warm-cream: #FFF7E8;
-      --novus-peach: #EF9178;
-      --footer-muted: rgba(255, 247, 232, .72);
+      --blush: #F3E6E4;
+      --accent: #EB92A4;
+      --ink: #332929;
+      --cream: #FFF7E8;
+      --black: #050606;
       --display: "Arial Black", "Plus Jakarta Sans", Impact, sans-serif;
       --body: "Plus Jakarta Sans", system-ui, sans-serif;
+      --serif: "Cormorant Garamond", Georgia, serif;
     }
 
     * { box-sizing: border-box; }
 
-    html,
+    html {
+      background: var(--blush);
+      color: var(--ink);
+      font-family: var(--body);
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-width: 320px;
-      background: var(--misty-blush);
-      color: var(--pearl-black);
-      font-family: var(--body);
+      background: var(--blush);
     }
 
     img { display: block; max-width: 100%; }
+    a { color: inherit; }
 
     .skip-link {
       position: fixed;
@@ -36,8 +44,8 @@
       top: 16px;
       z-index: 20;
       transform: translateY(-140%);
-      background: var(--pearl-black);
-      color: var(--warm-cream);
+      background: var(--ink);
+      color: var(--cream);
       padding: 10px 14px;
       border-radius: 4px;
       font-weight: 800;
@@ -45,157 +53,618 @@
 
     .skip-link:focus { transform: translateY(0); }
 
-    .reference-page {
-      position: relative;
+    .about-page {
       width: min(100%, 1920px);
       margin: 0 auto;
-      background: var(--misty-blush);
-    }
-
-    .reference-page img {
-      width: 100%;
-      height: auto;
-    }
-
-    .semantic-copy {
-      position: absolute;
-      width: 1px;
-      height: 1px;
+      background: var(--blush);
       overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
     }
 
-    .site-footer {
-      width: min(100%, 1920px);
-      margin: 0 auto;
-      padding: clamp(58px, 6vw, 96px) clamp(30px, 8vw, 150px) clamp(38px, 4vw, 64px);
-      background:
-        linear-gradient(135deg, rgba(235, 146, 164, .14), transparent 34%),
-        var(--pearl-black);
-      color: var(--warm-cream);
-    }
-
-    .footer-grid {
+    .pickup-strip {
+      height: 60px;
       display: grid;
-      grid-template-columns: minmax(240px, 1.05fr) repeat(3, minmax(160px, 1fr));
-      gap: clamp(30px, 5vw, 76px);
-      align-items: start;
-    }
-
-    .footer-logo {
-      width: 94px;
-      margin-bottom: 18px;
-    }
-
-    .footer-title {
-      margin: 0 0 16px;
+      place-items: center;
+      background: var(--accent);
+      color: var(--cream);
       font-family: var(--display);
-      font-size: clamp(24px, 2.1vw, 34px);
-      line-height: .95;
+      font-size: 28px;
+      line-height: 1;
       text-transform: uppercase;
-      color: var(--warm-cream);
+      text-decoration: none;
     }
 
-    .footer-copy,
-    .footer-list {
+    .about-nav {
+      height: 180px;
+      display: grid;
+      grid-template-columns: 1fr 260px 1fr;
+      align-items: center;
+      gap: 55px;
+      padding: 0 160px;
+      background: var(--blush);
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 92px;
       margin: 0;
-      color: var(--footer-muted);
-      font-size: clamp(14px, 1.05vw, 17px);
-      line-height: 1.75;
-    }
-
-    .footer-list {
       padding: 0;
       list-style: none;
     }
 
-    .footer-list a {
-      text-decoration-color: transparent;
-      text-underline-offset: 4px;
+    .nav-list:last-child {
+      justify-content: flex-end;
+      gap: 86px;
     }
 
-    .footer-list a:hover,
-    .footer-list a:focus-visible {
-      color: var(--momo-pink);
-      text-decoration-color: currentColor;
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      padding: 10px 0;
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 26px;
+      line-height: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    .footer-bottom {
-      margin-top: 46px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255, 247, 232, .22);
-      color: rgba(255, 247, 232, .66);
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 2px;
+      height: 5px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after,
+    .nav-link.is-active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-logo {
+      display: grid;
+      place-items: center;
+    }
+
+    .nav-logo img {
+      width: 260px;
+      height: auto;
+    }
+
+    .about-section {
+      position: relative;
+      width: 100%;
+    }
+
+    .hero-section {
+      height: 830px;
+      background: var(--blush);
+    }
+
+    .hero-copy {
+      position: absolute;
+      left: 160px;
+      top: 86px;
+      width: 560px;
+    }
+
+    .label {
+      margin: 0;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: 34px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 20px 0 0;
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 91px;
+      line-height: .98;
+      text-transform: uppercase;
+    }
+
+    .hero-line {
+      margin: 46px 0 0;
+      font-family: var(--serif);
+      font-size: 34px;
+      line-height: 1.1;
+      letter-spacing: .02em;
+      color: #4a3c39;
+    }
+
+    .heart-art {
+      width: 245px;
+      position: absolute;
+      left: 306px;
+      top: 472px;
+    }
+
+    .waffle-stack {
+      width: 920px;
+      position: absolute;
+      left: 745px;
+      top: 0;
+    }
+
+    .hero-caption {
+      position: absolute;
+      left: 1168px;
+      top: 694px;
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 16px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .story-section {
+      height: 592px;
+      border-top: 1px solid rgba(51, 41, 41, .08);
+      background: var(--blush);
+    }
+
+    .quote-block {
+      position: absolute;
+      left: 164px;
+      top: 28px;
+      width: 560px;
+    }
+
+    .quote {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 60px;
+      line-height: 1.05;
+      letter-spacing: .01em;
+    }
+
+    .story-copy {
+      width: 520px;
+      margin: 54px 0 0;
+      color: #4b403e;
+      font-size: 22px;
+      line-height: 1.33;
+      letter-spacing: .01em;
+    }
+
+    .prep-art {
+      position: absolute;
+      left: 765px;
+      top: 90px;
+      width: 1125px;
+    }
+
+    .origin-section {
+      height: 705px;
+      display: grid;
+      grid-template-columns: 780px 1fr;
+      background: var(--black);
+      color: var(--cream);
+    }
+
+    .pull-photo {
+      width: 780px;
+      height: 705px;
+      object-fit: cover;
+      object-position: center bottom;
+    }
+
+    .origin-copy {
+      padding: 48px 0 0 66px;
+      width: 720px;
+    }
+
+    .origin-copy .label {
+      font-size: 24px;
+    }
+
+    .origin-title {
+      margin: 28px 0 0;
+      color: var(--cream);
+      font-family: var(--display);
+      font-size: 59px;
+      line-height: 1.08;
+      text-transform: uppercase;
+    }
+
+    .origin-title span {
+      white-space: nowrap;
+    }
+
+    .origin-text {
+      width: 690px;
+      margin: 34px 0 0;
+      color: rgba(255, 247, 232, .86);
+      font-size: 22px;
+      line-height: 1.4;
+      letter-spacing: .01em;
+    }
+
+    .origin-text p {
+      margin: 0 0 34px;
+    }
+
+    .founders-section {
+      height: 576px;
+      background: var(--blush);
+    }
+
+    .founders-heading {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 60px;
+      text-align: center;
+      font-size: 23px;
+    }
+
+    .founder-copy {
+      position: absolute;
+      top: 176px;
+      width: 360px;
+    }
+
+    .founder-copy.left {
+      left: 214px;
+    }
+
+    .founder-copy.right {
+      left: 1285px;
+    }
+
+    .founder-copy .label {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .founder-name {
+      margin: 0 0 34px;
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 54px;
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    .founder-copy p {
+      margin: 0;
+      color: #4c403e;
+      font-size: 22px;
+      line-height: 1.34;
+    }
+
+    .founder-art {
+      position: absolute;
+      left: 676px;
+      top: 112px;
+      width: 610px;
+    }
+
+    .more-section {
+      height: 557px;
+      background: #1e1c1c;
+      color: var(--cream);
+      overflow: hidden;
+    }
+
+    .more-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, .72) 0%, rgba(0, 0, 0, .58) 30%, rgba(0, 0, 0, .1) 58%, rgba(0, 0, 0, 0) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .2));
+      pointer-events: none;
+    }
+
+    .more-photo {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 1245px;
+      height: 557px;
+      object-fit: cover;
+      object-position: center center;
+      filter: saturate(.92) brightness(.9);
+    }
+
+    .more-copy {
+      position: absolute;
+      z-index: 2;
+      left: 136px;
+      top: 190px;
+      width: 540px;
+    }
+
+    .more-copy .label {
+      color: #f0a5b4;
+      font-size: 23px;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, .45);
+    }
+
+    .more-title {
+      margin: 40px 0 0;
+      color: var(--cream);
+      font-family: var(--display);
+      font-size: 58px;
+      line-height: .95;
+      text-transform: uppercase;
+      text-shadow: 0 3px 5px rgba(0, 0, 0, .6);
+    }
+
+    .more-copy p {
+      margin: 38px 0 0;
+      color: var(--cream);
+      font-size: 26px;
+      line-height: 1.45;
+      text-shadow: 0 3px 5px rgba(0, 0, 0, .6);
+    }
+
+    .more-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 220px;
+      height: 36px;
+      margin-top: 34px;
+      background: var(--accent);
+      color: var(--cream);
+      font-family: var(--display);
       font-size: 13px;
-      line-height: 1.6;
+      line-height: 1;
+      text-transform: uppercase;
+      text-decoration: none;
     }
 
-    .footer-bottom a {
-      color: var(--novus-peach);
-      font-weight: 800;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 4px;
-    }
-
-    a { color: inherit; }
-
-    a:focus-visible {
-      outline: 3px solid var(--momo-pink);
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--ink);
       outline-offset: 4px;
     }
 
-    @media (max-width: 900px) {
-      body { overflow-x: auto; }
-      .reference-page { width: 1120px; }
-      .site-footer { width: 1120px; }
-      .footer-grid { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 1199px) {
+      .about-page {
+        width: 100%;
+        overflow: visible;
+      }
+
+      .pickup-strip {
+        height: 52px;
+        font-size: 20px;
+      }
+
+      .about-nav {
+        height: auto;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 22px;
+      }
+
+      .nav-logo {
+        order: -1;
+      }
+
+      .nav-logo img {
+        width: 210px;
+      }
+
+      .nav-list,
+      .nav-list:last-child {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px 34px;
+      }
+
+      .nav-link {
+        font-size: 17px;
+      }
+
+      .about-section {
+        height: auto;
+      }
+
+      .hero-section,
+      .story-section,
+      .origin-section,
+      .founders-section,
+      .more-section {
+        min-height: 0;
+        padding: 56px 24px;
+      }
+
+      .hero-copy,
+      .heart-art,
+      .waffle-stack,
+      .hero-caption,
+      .quote-block,
+      .prep-art,
+      .founders-heading,
+      .founder-copy,
+      .founder-copy.left,
+      .founder-copy.right,
+      .founder-art,
+      .more-photo,
+      .more-copy {
+        position: static;
+      }
+
+      .hero-section,
+      .story-section,
+      .founders-section {
+        display: grid;
+        gap: 32px;
+      }
+
+      .hero-copy,
+      .quote-block,
+      .story-copy,
+      .origin-copy,
+      .origin-text,
+      .more-copy,
+      .founder-copy {
+        width: min(100%, 680px);
+      }
+
+      .hero-title,
+      .origin-title {
+        font-size: clamp(48px, 11vw, 86px);
+      }
+
+      .quote {
+        font-size: clamp(42px, 10vw, 64px);
+      }
+
+      .waffle-stack,
+      .prep-art,
+      .founder-art {
+        width: min(100%, 760px);
+      }
+
+      .heart-art {
+        width: 220px;
+        margin-left: 12vw;
+      }
+
+      .origin-section {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0;
+      }
+
+      .pull-photo {
+        width: 100%;
+        height: auto;
+      }
+
+      .origin-copy {
+        width: 100%;
+        max-width: 100%;
+        padding: 44px 24px 56px;
+      }
+
+      .origin-title span {
+        white-space: normal;
+      }
+
+      .origin-text {
+        max-width: 100%;
+      }
+
+      .founders-heading {
+        text-align: left;
+      }
+
+      .more-section {
+        padding: 0;
+      }
+
+      .more-photo {
+        width: 100%;
+        height: 460px;
+      }
+
+      .more-copy {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        top: 88px;
+        width: auto;
+      }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#content">Skip to content</a>
-  <main class="reference-page" id="content">
-    <img src="reference assets/about-reference.jpg" alt="Momo Ashi About page with Behind the Paw story, Wamochi origin, Momo and Ashi founders, and More to Love section" />
-    <div class="semantic-copy">
-      <h1>Behind the paw</h1>
-      <p>It all started with a gentle press.</p>
-      <p>We wondered what comfort would taste like.</p>
-      <h2>Turning comfort into flavor</h2>
-      <p>Wamochi is our take on the mochi waffle, lightly crisp outside and soft and satisfyingly chewy inside.</p>
-      <h2>More to love</h2>
-      <p>From Wamochi and handcrafted drinks to sweet and savory comfort.</p>
-    </div>
-  </main>
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div>
-        <img class="footer-logo" src="brand assets/momologo.png" alt="Momo Ashi logo" />
-        <p class="footer-copy">Tea, snacks, Wamochi, and paw-shaped comfort across Queens.</p>
-      </div>
-      <div>
-        <h2 class="footer-title">Explore</h2>
-        <ul class="footer-list">
-          <li><a href="menu.html">Menu</a></li>
-          <li><a href="catering.html">Catering</a></li>
-          <li><a href="locations.html">Locations</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="pawnerships.html">Pawnerships</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="footer-title">Locations</h2>
-        <p class="footer-copy">Bayside<br />Flushing<br />Woodside</p>
-      </div>
-      <div>
-        <h2 class="footer-title">Connect</h2>
-        <ul class="footer-list">
-          <li><a href="https://www.instagram.com/momoashi/?hl=en" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order pickup</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">Copyright Momo Ashi Tea &amp; Snack Bar. New York City. Made by <a href="https://www.novusnyc.org/" target="_blank" rel="noopener">Novus</a>.</div>
-  </footer>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="about-page">
+    <a class="pickup-strip" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pick up --&gt;</a>
+    <nav class="about-nav" aria-label="Primary navigation">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="menu.html">Menu</a></li>
+        <li><a class="nav-link" href="catering.html">Catering</a></li>
+        <li><a class="nav-link" href="locations.html">Locations</a></li>
+      </ul>
+      <a class="nav-logo" href="index.html" aria-label="Momo Ashi home">
+        <img src="about assets/about-nav-logo.jpg" alt="" />
+      </a>
+      <ul class="nav-list">
+        <li><a class="nav-link is-active" href="about.html">About</a></li>
+        <li><a class="nav-link" href="pawnerships.html">Pawnerships</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main id="main">
+      <section class="about-section hero-section" aria-labelledby="about-hero-title">
+        <div class="hero-copy">
+          <p class="label">Our story</p>
+          <h1 class="hero-title" id="about-hero-title">Behind<br />the paw</h1>
+          <p class="hero-line">It all started with a gentle press.</p>
+        </div>
+        <img class="heart-art" src="about assets/about-heart-characters.jpg" alt="Momo and Ashi holding a heart illustration" />
+        <img class="waffle-stack" src="about assets/about-waffle-stack.jpg" alt="Stacked colorful paw-shaped Wamochi" />
+        <p class="hero-caption">Seven flavors. One signature paw</p>
+      </section>
+
+      <section class="about-section story-section" aria-labelledby="story-quote">
+        <div class="quote-block">
+          <h2 class="quote" id="story-quote">&ldquo;We wondered<br />what comfort<br />would taste like&rdquo;</h2>
+          <p class="story-copy">Inspired by the irresistible joy of gently pressing a cat&rsquo;s or dog&rsquo;s paw, we set out to turn that feeling into something you could taste.<br />Momo Ashi is a place where playful ideas, handcrafted flavors, and everyday comfort come together&mdash;leaving a little paw print in</p>
+        </div>
+        <img class="prep-art" src="about assets/about-prep-illustration.jpg" alt="Momo and Ashi preparing food between Momo Ashi counters" />
+      </section>
+
+      <section class="about-section origin-section" aria-labelledby="origin-title">
+        <img class="pull-photo" src="about assets/about-pull-apart.jpg" alt="Hands pulling apart a warm paw-shaped Wamochi" />
+        <div class="origin-copy">
+          <p class="label">The origin of Wamochi</p>
+          <h2 class="origin-title" id="origin-title"><span>Turning comfort</span><br />into flavor</h2>
+          <div class="origin-text">
+            <p>Wamochi is our take on the mochi waffle&mdash;lightly crisp on the outside and soft and satisfyingly chewy on the inside.</p>
+            <p>Every Wamochi is made fresh using our custom paw-shaped waffle press, creating golden, crisp edges and our signature paw at the center.</p>
+            <p>It&rsquo;s this contrast of textures that makes Wamochi special: a warm, delicate crunch gives way to a dense, chewy mochi center.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section founders-section" aria-labelledby="founders-title">
+        <p class="label founders-heading" id="founders-title">Meet the founders (in spirit)</p>
+        <article class="founder-copy left">
+          <p class="label">The cat</p>
+          <h2 class="founder-name">Momo</h2>
+          <p>Cool, calm, and selectively social. Momo takes quality control seriously and believes comfort is a way of life.</p>
+        </article>
+        <img class="founder-art" src="about assets/about-founder-characters.jpg" alt="Momo and Ashi character illustration" />
+        <article class="founder-copy right">
+          <p class="label">The dog</p>
+          <h2 class="founder-name">Ashi</h2>
+          <p>Squishy, stubborn, and all heart. Ashi is always ready for a snack and believes in the power of pawsitivity.</p>
+        </article>
+      </section>
+
+      <section class="about-section more-section" aria-labelledby="more-title">
+        <img class="more-photo" src="about assets/about-more-food.jpg" alt="Momo Ashi bottle, onigiri, waffles, and snacks on a tabletop" />
+        <div class="more-copy">
+          <p class="label">More to Momo Ashi</p>
+          <h2 class="more-title" id="more-title">More to love.</h2>
+          <p>From Wamochi and handcrafted drinks<br />to sweet and savory comfort.</p>
+          <a class="more-button" href="locations.html">Find a location --&gt;</a>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
