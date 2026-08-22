@@ -11,6 +11,10 @@
       --momo-pink: #EB92A4;
       --pearl-black: #332929;
       --warm-cream: #FFF7E8;
+      --novus-peach: #EF9178;
+      --footer-muted: rgba(255, 247, 232, .72);
+      --display: "Arial Black", "Plus Jakarta Sans", Impact, sans-serif;
+      --body: "Plus Jakarta Sans", system-ui, sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -21,7 +25,7 @@
       min-width: 320px;
       background: var(--misty-blush);
       color: var(--pearl-black);
-      font-family: system-ui, sans-serif;
+      font-family: var(--body);
     }
 
     img { display: block; max-width: 100%; }
@@ -53,39 +57,6 @@
       height: auto;
     }
 
-    .hotspot {
-      position: absolute;
-      z-index: 5;
-      display: block;
-      border-radius: 4px;
-      color: transparent;
-      overflow: hidden;
-      text-indent: -9999px;
-    }
-
-    .hotspot:focus-visible {
-      outline: 3px solid var(--pearl-black);
-      outline-offset: 4px;
-    }
-
-    .hotspot::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 4px;
-      height: 4px;
-      background: var(--momo-pink);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 220ms ease;
-    }
-
-    .hotspot:hover::after,
-    .hotspot:focus-visible::after {
-      transform: scaleX(1);
-    }
-
     .semantic-copy {
       position: absolute;
       width: 1px;
@@ -95,19 +66,89 @@
       white-space: nowrap;
     }
 
-    .pickup-link { left: 40.4%; top: 0; width: 19.2%; height: 1.72%; }
-    .menu-link { left: 8%; top: 3.87%; width: 5.4%; height: 1.38%; }
-    .catering-link { left: 17%; top: 3.87%; width: 8.4%; height: 1.38%; }
-    .locations-link { left: 29%; top: 3.87%; width: 9.4%; height: 1.38%; }
-    .logo-link { left: 44.7%; top: 1.7%; width: 10.8%; height: 4%; }
-    .about-link { left: 60.8%; top: 3.87%; width: 6.3%; height: 1.38%; }
-    .pawnerships-link { left: 70.5%; top: 3.87%; width: 11.8%; height: 1.38%; }
-    .contact-link { left: 84.5%; top: 3.87%; width: 9.4%; height: 1.38%; }
-    .location-cta { left: 7%; top: 94.3%; width: 11.8%; height: 1.1%; }
+    .site-footer {
+      width: min(100%, 1920px);
+      margin: 0 auto;
+      padding: clamp(58px, 6vw, 96px) clamp(30px, 8vw, 150px) clamp(38px, 4vw, 64px);
+      background:
+        linear-gradient(135deg, rgba(235, 146, 164, .14), transparent 34%),
+        var(--pearl-black);
+      color: var(--warm-cream);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(240px, 1.05fr) repeat(3, minmax(160px, 1fr));
+      gap: clamp(30px, 5vw, 76px);
+      align-items: start;
+    }
+
+    .footer-logo {
+      width: 94px;
+      margin-bottom: 18px;
+    }
+
+    .footer-title {
+      margin: 0 0 16px;
+      font-family: var(--display);
+      font-size: clamp(24px, 2.1vw, 34px);
+      line-height: .95;
+      text-transform: uppercase;
+      color: var(--warm-cream);
+    }
+
+    .footer-copy,
+    .footer-list {
+      margin: 0;
+      color: var(--footer-muted);
+      font-size: clamp(14px, 1.05vw, 17px);
+      line-height: 1.75;
+    }
+
+    .footer-list {
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-list a {
+      text-decoration-color: transparent;
+      text-underline-offset: 4px;
+    }
+
+    .footer-list a:hover,
+    .footer-list a:focus-visible {
+      color: var(--momo-pink);
+      text-decoration-color: currentColor;
+    }
+
+    .footer-bottom {
+      margin-top: 46px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 247, 232, .22);
+      color: rgba(255, 247, 232, .66);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .footer-bottom a {
+      color: var(--novus-peach);
+      font-weight: 800;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible {
+      outline: 3px solid var(--momo-pink);
+      outline-offset: 4px;
+    }
 
     @media (max-width: 900px) {
       body { overflow-x: auto; }
       .reference-page { width: 1120px; }
+      .site-footer { width: 1120px; }
+      .footer-grid { grid-template-columns: repeat(4, 1fr); }
     }
   </style>
 </head>
@@ -124,15 +165,37 @@
       <h2>More to love</h2>
       <p>From Wamochi and handcrafted drinks to sweet and savory comfort.</p>
     </div>
-    <a class="hotspot pickup-link" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pickup</a>
-    <a class="hotspot menu-link" href="menu.html">Menu</a>
-    <a class="hotspot catering-link" href="catering.html">Catering</a>
-    <a class="hotspot locations-link" href="locations.html">Locations</a>
-    <a class="hotspot logo-link" href="index.html">Momo Ashi home</a>
-    <a class="hotspot about-link" href="about.html">About</a>
-    <a class="hotspot pawnerships-link" href="pawnerships.html">Pawnerships</a>
-    <a class="hotspot contact-link" href="contact.html">Contact</a>
-    <a class="hotspot location-cta" href="locations.html">Find a location</a>
   </main>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="brand assets/momologo.png" alt="Momo Ashi logo" />
+        <p class="footer-copy">Tea, snacks, Wamochi, and paw-shaped comfort across Queens.</p>
+      </div>
+      <div>
+        <h2 class="footer-title">Explore</h2>
+        <ul class="footer-list">
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="catering.html">Catering</a></li>
+          <li><a href="locations.html">Locations</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="pawnerships.html">Pawnerships</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-title">Locations</h2>
+        <p class="footer-copy">Bayside<br />Flushing<br />Woodside</p>
+      </div>
+      <div>
+        <h2 class="footer-title">Connect</h2>
+        <ul class="footer-list">
+          <li><a href="https://www.instagram.com/momoashi/?hl=en" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order pickup</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">Copyright Momo Ashi Tea &amp; Snack Bar. New York City. Made by <a href="https://www.novusnyc.org/" target="_blank" rel="noopener">Novus</a>.</div>
+  </footer>
 </body>
 </html>

@@ -3,6 +3,7 @@
   --momo-pink: #EB92A4;
   --pearl-black: #332929;
   --warm-cream: #FFF7E8;
+  --novus-peach: #EF9178;
   --salmon: #EF9178;
   --soft-line: rgba(51, 41, 41, .16);
   --shadow: 0 22px 52px rgba(51, 41, 41, .14);
@@ -817,7 +818,9 @@ a { color: inherit; }
   width: min(100%, 1920px);
   margin: 0 auto;
   padding: clamp(54px, 6vw, 92px) clamp(30px, 8vw, 150px);
-  background: var(--pearl-black);
+  background:
+    linear-gradient(135deg, rgba(235, 146, 164, .14), transparent 34%),
+    var(--pearl-black);
   color: var(--warm-cream);
 }
 
@@ -869,6 +872,13 @@ a { color: inherit; }
   border-top: 1px solid rgba(255, 247, 232, .2);
   color: rgba(255, 247, 232, .62);
   font-size: 13px;
+}
+
+.footer-bottom a {
+  color: var(--novus-peach);
+  font-weight: 800;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 
 .pickup-bar:focus-visible,
