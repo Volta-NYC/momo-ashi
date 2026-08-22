@@ -99,20 +99,13 @@ a { color: inherit; }
 .brand-link {
   display: grid;
   place-items: center;
-  gap: 5px;
-  min-width: 160px;
+  min-width: clamp(150px, 10vw, 205px);
   text-decoration: none;
 }
 
 .brand-link img {
-  width: clamp(78px, 7vw, 110px);
-}
-
-.brand-wordmark {
-  font-family: var(--display);
-  font-size: clamp(20px, 2vw, 31px);
-  line-height: .9;
-  text-transform: uppercase;
+  width: clamp(150px, 10vw, 205px);
+  height: auto;
 }
 
 .page-hero {
