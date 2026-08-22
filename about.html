@@ -188,7 +188,10 @@
 
     .heart-art {
       width: clamp(150px, 16vw, 245px);
+      height: auto;
       margin: clamp(38px, 5vw, 72px) auto 0;
+      object-fit: contain;
+      object-position: center bottom;
     }
 
     .hero-visual {
@@ -249,6 +252,7 @@
       width: min(100%, 810px);
       height: auto;
       object-fit: contain;
+      object-position: center bottom;
       justify-self: end;
     }
 
@@ -315,7 +319,7 @@
 
     .founders-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, .9fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1fr) minmax(340px, .92fr) minmax(0, 1fr);
       gap: clamp(42px, 5vw, 74px);
       align-items: center;
     }
@@ -346,9 +350,10 @@
     }
 
     .founder-art {
-      width: min(100%, 430px);
+      width: clamp(300px, 30vw, 470px);
       height: auto;
       object-fit: contain;
+      object-position: center bottom;
       justify-self: center;
     }
 
@@ -500,10 +505,6 @@
 
       .founders-heading {
         text-align: left;
-      }
-
-      .founder-art {
-        order: -1;
       }
 
       .more-section {
