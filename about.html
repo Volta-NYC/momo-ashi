@@ -18,6 +18,8 @@
       --display: "Arial Black", "Plus Jakarta Sans", Impact, sans-serif;
       --body: "Plus Jakarta Sans", system-ui, sans-serif;
       --serif: "Cormorant Garamond", Georgia, serif;
+      --page-pad: clamp(40px, 5vw, 80px);
+      --content-max: 1280px;
     }
 
     * { box-sizing: border-box; }
@@ -54,39 +56,42 @@
     .skip-link:focus { transform: translateY(0); }
 
     .about-page {
-      width: min(100%, 1920px);
-      margin: 0 auto;
+      width: 100%;
+      max-width: 100%;
       background: var(--blush);
-      overflow: hidden;
+    }
+
+    .content {
+      width: min(calc(100% - (var(--page-pad) * 2)), var(--content-max));
+      margin-inline: auto;
     }
 
     .pickup-strip {
-      height: 60px;
+      height: clamp(42px, 3.4vw, 60px);
       display: grid;
       place-items: center;
       background: var(--accent);
       color: var(--cream);
       font-family: var(--display);
-      font-size: 28px;
+      font-size: clamp(17px, 1.65vw, 28px);
       line-height: 1;
       text-transform: uppercase;
       text-decoration: none;
     }
 
     .about-nav {
-      height: 180px;
+      height: clamp(96px, 8.6vw, 150px);
       display: grid;
-      grid-template-columns: 1fr 260px 1fr;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
       align-items: center;
-      gap: 55px;
-      padding: 0 160px;
+      gap: clamp(22px, 3.2vw, 52px);
       background: var(--blush);
     }
 
     .nav-list {
       display: flex;
       align-items: center;
-      gap: 92px;
+      gap: clamp(24px, 3.3vw, 62px);
       margin: 0;
       padding: 0;
       list-style: none;
@@ -94,16 +99,15 @@
 
     .nav-list:last-child {
       justify-content: flex-end;
-      gap: 86px;
     }
 
     .nav-link {
       position: relative;
       display: inline-flex;
-      padding: 10px 0;
+      padding: 9px 0;
       color: var(--ink);
       font-family: var(--display);
-      font-size: 26px;
+      font-size: clamp(16px, 1.45vw, 24px);
       line-height: 1;
       text-decoration: none;
       text-transform: uppercase;
@@ -115,7 +119,7 @@
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 2px;
+      bottom: 1px;
       height: 5px;
       background: var(--accent);
       transform: scaleX(0);
@@ -135,147 +139,149 @@
     }
 
     .nav-logo img {
-      width: 260px;
+      width: clamp(150px, 13vw, 220px);
       height: auto;
     }
 
     .about-section {
-      position: relative;
-      width: 100%;
-    }
-
-    .hero-section {
-      height: 830px;
-      background: var(--blush);
-    }
-
-    .hero-copy {
-      position: absolute;
-      left: 160px;
-      top: 86px;
-      width: 560px;
+      max-width: 100%;
     }
 
     .label {
       margin: 0;
       color: var(--accent);
       font-family: var(--display);
-      font-size: 34px;
+      font-size: clamp(13px, 1.25vw, 20px);
       line-height: 1;
       text-transform: uppercase;
     }
 
+    .hero-section {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      gap: clamp(42px, 6vw, 92px);
+      align-items: center;
+      padding-block: clamp(58px, 6.6vw, 108px) clamp(58px, 6vw, 96px);
+    }
+
+    .hero-copy {
+      min-width: 0;
+    }
+
     .hero-title {
-      margin: 20px 0 0;
+      margin: clamp(16px, 1.6vw, 24px) 0 0;
       color: var(--ink);
       font-family: var(--display);
-      font-size: 91px;
+      font-size: clamp(56px, 5.5vw, 92px);
       line-height: .98;
       text-transform: uppercase;
     }
 
     .hero-line {
-      margin: 46px 0 0;
+      margin: clamp(28px, 3vw, 46px) 0 0;
       font-family: var(--serif);
-      font-size: 34px;
-      line-height: 1.1;
+      font-size: clamp(22px, 2.1vw, 34px);
+      line-height: 1.12;
       letter-spacing: .02em;
       color: #4a3c39;
     }
 
     .heart-art {
-      width: 245px;
-      position: absolute;
-      left: 306px;
-      top: 472px;
+      width: clamp(150px, 16vw, 245px);
+      margin: clamp(38px, 5vw, 72px) auto 0;
+    }
+
+    .hero-visual {
+      min-width: 0;
+      display: grid;
+      justify-items: center;
+      align-self: start;
+      padding-top: clamp(0px, 1vw, 20px);
     }
 
     .waffle-stack {
-      width: 920px;
-      position: absolute;
-      left: 745px;
-      top: 0;
+      width: min(100%, 760px);
+      height: auto;
+      object-fit: contain;
     }
 
     .hero-caption {
-      position: absolute;
-      left: 1168px;
-      top: 694px;
-      margin: 0;
+      margin: clamp(8px, 1vw, 14px) 0 0;
       color: var(--ink);
       font-family: var(--display);
-      font-size: 16px;
+      font-size: clamp(10px, .9vw, 15px);
       line-height: 1;
       text-transform: uppercase;
     }
 
     .story-section {
-      height: 592px;
       border-top: 1px solid rgba(51, 41, 41, .08);
       background: var(--blush);
+      padding-block: clamp(64px, 6.8vw, 112px);
     }
 
-    .quote-block {
-      position: absolute;
-      left: 164px;
-      top: 28px;
-      width: 560px;
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .76fr) minmax(0, 1.24fr);
+      gap: clamp(48px, 7vw, 118px);
+      align-items: end;
     }
 
     .quote {
       margin: 0;
       color: var(--ink);
       font-family: var(--serif);
-      font-size: 60px;
+      font-size: clamp(38px, 3.8vw, 60px);
       line-height: 1.05;
       letter-spacing: .01em;
     }
 
     .story-copy {
-      width: 520px;
-      margin: 54px 0 0;
+      max-width: 470px;
+      margin: clamp(34px, 4vw, 56px) 0 0;
       color: #4b403e;
-      font-size: 22px;
-      line-height: 1.33;
+      font-size: clamp(15px, 1.2vw, 19px);
+      line-height: 1.42;
       letter-spacing: .01em;
     }
 
     .prep-art {
-      position: absolute;
-      left: 765px;
-      top: 90px;
-      width: 1125px;
+      width: min(100%, 810px);
+      height: auto;
+      object-fit: contain;
+      justify-self: end;
     }
 
     .origin-section {
-      height: 705px;
       display: grid;
-      grid-template-columns: 780px 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
       background: var(--black);
       color: var(--cream);
     }
 
     .pull-photo {
-      width: 780px;
-      height: 705px;
+      width: 100%;
+      height: clamp(420px, 43vw, 620px);
       object-fit: cover;
-      object-position: center bottom;
+      object-position: center center;
     }
 
     .origin-copy {
-      padding: 48px 0 0 66px;
-      width: 720px;
+      width: min(100% - 80px, 620px);
+      margin-inline: clamp(40px, 5.5vw, 88px) auto;
+      padding-block: clamp(56px, 6vw, 92px);
     }
 
     .origin-copy .label {
-      font-size: 24px;
+      font-size: clamp(13px, 1.2vw, 18px);
     }
 
     .origin-title {
-      margin: 28px 0 0;
+      margin: clamp(20px, 2.3vw, 34px) 0 0;
       color: var(--cream);
       font-family: var(--display);
-      font-size: 59px;
+      font-size: clamp(40px, 3.8vw, 64px);
       line-height: 1.08;
       text-transform: uppercase;
     }
@@ -285,56 +291,49 @@
     }
 
     .origin-text {
-      width: 690px;
-      margin: 34px 0 0;
+      margin: clamp(28px, 3vw, 42px) 0 0;
       color: rgba(255, 247, 232, .86);
-      font-size: 22px;
-      line-height: 1.4;
+      font-size: clamp(15px, 1.18vw, 19px);
+      line-height: 1.48;
       letter-spacing: .01em;
     }
 
     .origin-text p {
-      margin: 0 0 34px;
+      margin: 0 0 clamp(20px, 2.3vw, 32px);
     }
 
     .founders-section {
-      height: 576px;
+      padding-block: clamp(64px, 6vw, 104px) clamp(58px, 6.2vw, 108px);
       background: var(--blush);
     }
 
     .founders-heading {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 60px;
+      margin: 0 0 clamp(54px, 6vw, 84px);
       text-align: center;
-      font-size: 23px;
+      font-size: clamp(13px, 1.2vw, 18px);
+    }
+
+    .founders-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .9fr) minmax(0, 1fr);
+      gap: clamp(42px, 5vw, 74px);
+      align-items: center;
     }
 
     .founder-copy {
-      position: absolute;
-      top: 176px;
-      width: 360px;
-    }
-
-    .founder-copy.left {
-      left: 214px;
-    }
-
-    .founder-copy.right {
-      left: 1285px;
+      min-width: 0;
     }
 
     .founder-copy .label {
-      font-size: 20px;
+      font-size: clamp(12px, 1vw, 16px);
       margin-bottom: 10px;
     }
 
     .founder-name {
-      margin: 0 0 34px;
+      margin: 0 0 clamp(22px, 2.4vw, 34px);
       color: var(--ink);
       font-family: var(--display);
-      font-size: 54px;
+      font-size: clamp(34px, 3.4vw, 54px);
       line-height: .95;
       text-transform: uppercase;
     }
@@ -342,22 +341,25 @@
     .founder-copy p {
       margin: 0;
       color: #4c403e;
-      font-size: 22px;
-      line-height: 1.34;
+      font-size: clamp(15px, 1.18vw, 19px);
+      line-height: 1.42;
     }
 
     .founder-art {
-      position: absolute;
-      left: 676px;
-      top: 112px;
-      width: 610px;
+      width: min(100%, 430px);
+      height: auto;
+      object-fit: contain;
+      justify-self: center;
     }
 
     .more-section {
-      height: 557px;
+      position: relative;
+      min-height: clamp(380px, 39vw, 560px);
+      display: grid;
+      align-items: center;
+      overflow: clip;
       background: #1e1c1c;
       color: var(--cream);
-      overflow: hidden;
     }
 
     .more-section::before {
@@ -366,50 +368,51 @@
       inset: 0;
       z-index: 1;
       background:
-        linear-gradient(90deg, rgba(0, 0, 0, .72) 0%, rgba(0, 0, 0, .58) 30%, rgba(0, 0, 0, .1) 58%, rgba(0, 0, 0, 0) 100%),
-        linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .2));
+        linear-gradient(90deg, rgba(0, 0, 0, .76) 0%, rgba(0, 0, 0, .58) 33%, rgba(0, 0, 0, .2) 63%, rgba(0, 0, 0, 0) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .26));
       pointer-events: none;
     }
 
     .more-photo {
       position: absolute;
-      right: 0;
-      top: 0;
-      width: 1245px;
-      height: 557px;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center center;
       filter: saturate(.92) brightness(.9);
     }
 
     .more-copy {
-      position: absolute;
+      position: relative;
       z-index: 2;
-      left: 136px;
-      top: 190px;
-      width: 540px;
+      width: min(calc(100% - (var(--page-pad) * 2)), var(--content-max));
+      margin-inline: auto;
+      padding-block: clamp(78px, 8vw, 118px);
     }
 
     .more-copy .label {
       color: #f0a5b4;
-      font-size: 23px;
+      font-size: clamp(13px, 1.15vw, 18px);
       text-shadow: 0 2px 3px rgba(0, 0, 0, .45);
     }
 
     .more-title {
-      margin: 40px 0 0;
+      max-width: 520px;
+      margin: clamp(28px, 3.2vw, 42px) 0 0;
       color: var(--cream);
       font-family: var(--display);
-      font-size: 58px;
+      font-size: clamp(38px, 4.1vw, 62px);
       line-height: .95;
       text-transform: uppercase;
       text-shadow: 0 3px 5px rgba(0, 0, 0, .6);
     }
 
-    .more-copy p {
-      margin: 38px 0 0;
+    .more-copy p:not(.label) {
+      max-width: 520px;
+      margin: clamp(22px, 2.8vw, 38px) 0 0;
       color: var(--cream);
-      font-size: 26px;
+      font-size: clamp(16px, 1.6vw, 24px);
       line-height: 1.45;
       text-shadow: 0 3px 5px rgba(0, 0, 0, .6);
     }
@@ -418,13 +421,14 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 220px;
-      height: 36px;
-      margin-top: 34px;
+      min-width: clamp(150px, 14vw, 210px);
+      height: clamp(32px, 3vw, 38px);
+      margin-top: clamp(24px, 2.8vw, 34px);
+      padding-inline: 18px;
       background: var(--accent);
       color: var(--cream);
       font-family: var(--display);
-      font-size: 13px;
+      font-size: clamp(10px, .9vw, 13px);
       line-height: 1;
       text-transform: uppercase;
       text-decoration: none;
@@ -436,153 +440,112 @@
       outline-offset: 4px;
     }
 
-    @media (max-width: 1199px) {
-      .about-page {
-        width: 100%;
-        overflow: visible;
-      }
+    @media (min-width: 1600px) {
+      :root { --content-max: 1420px; }
+    }
 
-      .pickup-strip {
-        height: 52px;
-        font-size: 20px;
-      }
+    @media (max-width: 1100px) {
+      :root { --page-pad: clamp(24px, 4vw, 48px); }
 
       .about-nav {
         height: auto;
         grid-template-columns: 1fr;
+        justify-items: center;
         gap: 18px;
-        padding: 22px;
+        padding-block: 22px;
       }
 
-      .nav-logo {
-        order: -1;
-      }
-
-      .nav-logo img {
-        width: 210px;
-      }
+      .nav-logo { order: -1; }
 
       .nav-list,
       .nav-list:last-child {
         justify-content: center;
         flex-wrap: wrap;
-        gap: 20px 34px;
-      }
-
-      .nav-link {
-        font-size: 17px;
-      }
-
-      .about-section {
-        height: auto;
+        gap: 18px 34px;
       }
 
       .hero-section,
-      .story-section,
+      .story-grid,
       .origin-section,
-      .founders-section,
-      .more-section {
-        min-height: 0;
-        padding: 56px 24px;
+      .founders-grid {
+        grid-template-columns: 1fr;
       }
 
-      .hero-copy,
-      .heart-art,
-      .waffle-stack,
-      .hero-caption,
-      .quote-block,
-      .prep-art,
-      .founders-heading,
-      .founder-copy,
-      .founder-copy.left,
-      .founder-copy.right,
-      .founder-art,
-      .more-photo,
-      .more-copy {
-        position: static;
+      .hero-section {
+        gap: 34px;
       }
 
-      .hero-section,
-      .story-section,
-      .founders-section {
-        display: grid;
-        gap: 32px;
-      }
-
-      .hero-copy,
-      .quote-block,
-      .story-copy,
-      .origin-copy,
-      .origin-text,
-      .more-copy,
-      .founder-copy {
-        width: min(100%, 680px);
-      }
-
-      .hero-title,
-      .origin-title {
-        font-size: clamp(48px, 11vw, 86px);
-      }
-
-      .quote {
-        font-size: clamp(42px, 10vw, 64px);
-      }
-
-      .waffle-stack,
+      .hero-visual,
       .prep-art,
       .founder-art {
+        justify-self: center;
+      }
+
+      .story-grid {
+        align-items: center;
+      }
+
+      .prep-art {
         width: min(100%, 760px);
       }
 
-      .heart-art {
-        width: 220px;
-        margin-left: 12vw;
-      }
-
-      .origin-section {
-        grid-template-columns: 1fr;
-        gap: 0;
-        padding: 0;
-      }
-
-      .pull-photo {
-        width: 100%;
-        height: auto;
-      }
-
       .origin-copy {
-        width: 100%;
-        max-width: 100%;
-        padding: 44px 24px 56px;
+        width: min(calc(100% - (var(--page-pad) * 2)), 680px);
+        margin-inline: auto;
       }
 
       .origin-title span {
         white-space: normal;
       }
 
-      .origin-text {
-        max-width: 100%;
-      }
-
       .founders-heading {
         text-align: left;
       }
 
+      .founder-art {
+        order: -1;
+      }
+
       .more-section {
-        padding: 0;
+        min-height: 460px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root { --page-pad: 22px; }
+
+      .pickup-strip {
+        height: 46px;
       }
 
-      .more-photo {
-        width: 100%;
-        height: 460px;
+      .nav-logo img {
+        width: 190px;
       }
 
-      .more-copy {
-        position: absolute;
-        left: 24px;
-        right: 24px;
-        top: 88px;
-        width: auto;
+      .nav-link {
+        font-size: 15px;
+      }
+
+      .hero-section,
+      .story-section,
+      .founders-section {
+        padding-block: 48px;
+      }
+
+      .heart-art {
+        margin-inline: 0 auto;
+      }
+
+      .pull-photo {
+        height: 360px;
+      }
+
+      .origin-copy {
+        padding-block: 48px;
+      }
+
+      .more-section {
+        min-height: 430px;
       }
     }
   </style>
@@ -591,7 +554,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="about-page">
     <a class="pickup-strip" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pick up --&gt;</a>
-    <nav class="about-nav" aria-label="Primary navigation">
+    <nav class="about-nav content" aria-label="Primary navigation">
       <ul class="nav-list">
         <li><a class="nav-link" href="menu.html">Menu</a></li>
         <li><a class="nav-link" href="catering.html">Catering</a></li>
@@ -608,23 +571,27 @@
     </nav>
 
     <main id="main">
-      <section class="about-section hero-section" aria-labelledby="about-hero-title">
+      <section class="about-section hero-section content" aria-labelledby="about-hero-title">
         <div class="hero-copy">
           <p class="label">Our story</p>
           <h1 class="hero-title" id="about-hero-title">Behind<br />the paw</h1>
           <p class="hero-line">It all started with a gentle press.</p>
+          <img class="heart-art" src="about assets/about-heart-characters.jpg" alt="Momo and Ashi holding a heart illustration" />
         </div>
-        <img class="heart-art" src="about assets/about-heart-characters.jpg" alt="Momo and Ashi holding a heart illustration" />
-        <img class="waffle-stack" src="about assets/about-waffle-stack.jpg" alt="Stacked colorful paw-shaped Wamochi" />
-        <p class="hero-caption">Seven flavors. One signature paw</p>
+        <div class="hero-visual">
+          <img class="waffle-stack" src="about assets/about-waffle-stack.jpg" alt="Stacked colorful paw-shaped Wamochi" />
+          <p class="hero-caption">Seven flavors. One signature paw</p>
+        </div>
       </section>
 
       <section class="about-section story-section" aria-labelledby="story-quote">
-        <div class="quote-block">
-          <h2 class="quote" id="story-quote">&ldquo;We wondered<br />what comfort<br />would taste like&rdquo;</h2>
-          <p class="story-copy">Inspired by the irresistible joy of gently pressing a cat&rsquo;s or dog&rsquo;s paw, we set out to turn that feeling into something you could taste.<br />Momo Ashi is a place where playful ideas, handcrafted flavors, and everyday comfort come together&mdash;leaving a little paw print in</p>
+        <div class="story-grid content">
+          <div class="quote-block">
+            <h2 class="quote" id="story-quote">&ldquo;We wondered<br />what comfort<br />would taste like&rdquo;</h2>
+            <p class="story-copy">Inspired by the irresistible joy of gently pressing a cat&rsquo;s or dog&rsquo;s paw, we set out to turn that feeling into something you could taste.<br />Momo Ashi is a place where playful ideas, handcrafted flavors, and everyday comfort come together&mdash;leaving a little paw print in your day.</p>
+          </div>
+          <img class="prep-art" src="about assets/about-prep-illustration.jpg" alt="Momo and Ashi preparing food between Momo Ashi counters" />
         </div>
-        <img class="prep-art" src="about assets/about-prep-illustration.jpg" alt="Momo and Ashi preparing food between Momo Ashi counters" />
       </section>
 
       <section class="about-section origin-section" aria-labelledby="origin-title">
@@ -641,18 +608,22 @@
       </section>
 
       <section class="about-section founders-section" aria-labelledby="founders-title">
-        <p class="label founders-heading" id="founders-title">Meet the founders (in spirit)</p>
-        <article class="founder-copy left">
-          <p class="label">The cat</p>
-          <h2 class="founder-name">Momo</h2>
-          <p>Cool, calm, and selectively social. Momo takes quality control seriously and believes comfort is a way of life.</p>
-        </article>
-        <img class="founder-art" src="about assets/about-founder-characters.jpg" alt="Momo and Ashi character illustration" />
-        <article class="founder-copy right">
-          <p class="label">The dog</p>
-          <h2 class="founder-name">Ashi</h2>
-          <p>Squishy, stubborn, and all heart. Ashi is always ready for a snack and believes in the power of pawsitivity.</p>
-        </article>
+        <div class="content">
+          <p class="label founders-heading" id="founders-title">Meet the founders (in spirit)</p>
+          <div class="founders-grid">
+            <article class="founder-copy">
+              <p class="label">The cat</p>
+              <h2 class="founder-name">Momo</h2>
+              <p>Cool, calm, and selectively social. Momo takes quality control seriously and believes comfort is a way of life.</p>
+            </article>
+            <img class="founder-art" src="about assets/about-founder-characters.jpg" alt="Momo and Ashi character illustration" />
+            <article class="founder-copy">
+              <p class="label">The dog</p>
+              <h2 class="founder-name">Ashi</h2>
+              <p>Squishy, stubborn, and all heart. Ashi is always ready for a snack and believes in the power of pawsitivity.</p>
+            </article>
+          </div>
+        </div>
       </section>
 
       <section class="about-section more-section" aria-labelledby="more-title">
