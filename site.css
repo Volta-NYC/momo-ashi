@@ -32,7 +32,7 @@ img { display: block; max-width: 100%; }
 a { color: inherit; }
 
 .pickup-bar {
-  min-height: 60px;
+  height: 60px;
   display: grid;
   place-items: center;
   background: var(--momo-pink);
@@ -45,14 +45,14 @@ a { color: inherit; }
 }
 
 .site-nav {
-  min-height: 150px;
+  height: 180px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: clamp(20px, 5vw, 76px);
   width: min(100%, 1920px);
   margin: 0 auto;
-  padding: 18px clamp(38px, 7.8vw, 154px);
+  padding: 0 clamp(38px, 7.8vw, 154px);
   background: var(--misty-blush);
 }
 
@@ -100,19 +100,19 @@ a { color: inherit; }
 .brand-link {
   display: grid;
   place-items: center;
-  min-width: clamp(150px, 10vw, 205px);
+  min-width: clamp(178px, 10.8vw, 208px);
   text-decoration: none;
 }
 
 .brand-link img {
-  width: clamp(150px, 10vw, 205px);
+  width: clamp(178px, 10.8vw, 208px);
   height: auto;
 }
 
 .page-hero {
   width: min(100%, 1920px);
   margin: 0 auto;
-  padding: clamp(86px, 8vw, 150px) clamp(34px, 8vw, 156px) clamp(70px, 7vw, 120px);
+  padding: clamp(58px, 5.4vw, 104px) clamp(34px, 8vw, 156px) clamp(70px, 7vw, 120px);
   display: grid;
   grid-template-columns: minmax(360px, .9fr) minmax(420px, 1fr);
   gap: clamp(42px, 7vw, 128px);
@@ -901,6 +901,7 @@ a { color: inherit; }
 
 @media (max-width: 1100px) {
   .site-nav {
+    height: auto;
     grid-template-columns: 1fr;
     justify-items: center;
     padding: 22px;
@@ -947,7 +948,7 @@ a { color: inherit; }
 
 @media (max-width: 620px) {
   .pickup-bar {
-    min-height: 48px;
+    height: 48px;
     font-size: 18px;
   }
 
