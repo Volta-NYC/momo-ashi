@@ -50,7 +50,7 @@
     .skip-link:focus { transform: translateY(0); }
 
     .site-shell {
-      width: min(100%, 1920px);
+      width: 100%;
       margin: 0 auto;
       position: relative;
       overflow: hidden;
@@ -60,8 +60,9 @@
     .hero-carousel {
       position: relative;
       width: 100%;
-      aspect-ratio: 1920 / 1075;
-      min-height: 560px;
+      aspect-ratio: 1920 / 845;
+      min-height: clamp(560px, 56vw, 845px);
+      overflow: hidden;
     }
 
     .reference-slide {
@@ -79,8 +80,10 @@
 
     .reference-slide img {
       width: 100%;
-      height: 100%;
+      height: calc(100% + clamp(132px, 12vw, 230px));
       object-fit: cover;
+      object-position: center top;
+      transform: translateY(calc(clamp(132px, 12vw, 230px) * -1));
     }
 
     .hotspot {
@@ -118,16 +121,8 @@
       transform: scaleX(1);
     }
 
-    .pickup-link { left: 40.5%; top: 0; width: 19.2%; height: 5.55%; }
-    .menu-link { left: 8%; top: 12%; width: 5.2%; height: 4.2%; }
-    .catering-link { left: 17%; top: 12%; width: 8.2%; height: 4.2%; }
-    .locations-link { left: 29%; top: 12%; width: 9.2%; height: 4.2%; }
-    .about-link { left: 60.8%; top: 12%; width: 6.3%; height: 4.2%; }
-    .pawnerships-link { left: 70.5%; top: 12%; width: 11.5%; height: 4.2%; }
-    .contact-link { left: 84.5%; top: 12%; width: 9.2%; height: 4.2%; }
-    .logo-link { left: 44.7%; top: 6.8%; width: 10.6%; height: 11.8%; }
-    .primary-cta { left: 8.2%; top: 63%; width: 18.5%; height: 8.8%; }
-    .secondary-cta { left: 27.3%; top: 63%; width: 13.7%; height: 8.8%; }
+    .primary-cta { left: 8.2%; top: 52.8%; width: 18.5%; height: 11.2%; }
+    .secondary-cta { left: 27.3%; top: 52.8%; width: 13.7%; height: 11.2%; }
 
     .carousel-control {
       position: absolute;
@@ -191,15 +186,27 @@
     }
 
     @media (max-width: 900px) {
-      .site-shell {
-        width: 100%;
-        overflow-x: auto;
+      .hero-carousel {
+        aspect-ratio: auto;
+        height: clamp(560px, 145vw, 720px);
+        min-height: 0;
       }
 
-      .hero-carousel {
-        width: 1120px;
-        min-height: 627px;
+      .reference-slide img {
+        height: 100%;
+        transform: none;
+        object-position: 52% center;
       }
+
+      .primary-cta,
+      .secondary-cta {
+        top: auto;
+        bottom: 17%;
+        height: 54px;
+      }
+
+      .primary-cta { left: 8%; width: 48%; }
+      .secondary-cta { left: 58%; width: 34%; }
 
       .carousel-control {
         position: fixed;
@@ -217,6 +224,36 @@
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
+  <a class="pickup-bar" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pick up --&gt;</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <button class="mobile-menu-toggle" type="button" aria-controls="mobile-nav-panel" aria-expanded="false" aria-label="Open navigation menu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <ul class="nav-group">
+      <li><a class="nav-link" href="menu.html">Menu</a></li>
+      <li><a class="nav-link" href="catering.html">Catering</a></li>
+      <li><a class="nav-link" href="locations.html">Locations</a></li>
+    </ul>
+    <a class="brand-link" href="index.html" aria-label="Momo Ashi home">
+      <img src="brand assets/momo-ashi-nav-logo.jpg" alt="" />
+    </a>
+    <ul class="nav-group">
+      <li><a class="nav-link" href="about.html">About</a></li>
+      <li><a class="nav-link" href="pawnerships.html">Pawnerships</a></li>
+      <li><a class="nav-link" href="contact.html">Contact</a></li>
+    </ul>
+    <a class="mobile-order-cta" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order</a>
+    <div class="mobile-nav-panel" id="mobile-nav-panel" hidden>
+      <a class="mobile-nav-link" href="menu.html">Menu</a>
+      <a class="mobile-nav-link" href="catering.html">Catering</a>
+      <a class="mobile-nav-link" href="locations.html">Locations</a>
+      <a class="mobile-nav-link" href="about.html">About</a>
+      <a class="mobile-nav-link" href="pawnerships.html">Pawnerships</a>
+      <a class="mobile-nav-link" href="contact.html">Contact</a>
+    </div>
+  </nav>
   <main class="site-shell" id="content">
     <section class="hero-carousel" aria-label="Momo Ashi featured slides">
       <article class="reference-slide is-active">
@@ -235,14 +272,6 @@
         </div>
       </article>
 
-      <a class="hotspot pickup-link" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pickup</a>
-      <a class="hotspot menu-link" href="menu.html">Menu</a>
-      <a class="hotspot catering-link" href="catering.html">Catering</a>
-      <a class="hotspot locations-link" href="locations.html">Locations</a>
-      <a class="hotspot logo-link" href="index.html">Momo Ashi home</a>
-      <a class="hotspot about-link" href="about.html">About</a>
-      <a class="hotspot pawnerships-link" href="pawnerships.html">Pawnerships</a>
-      <a class="hotspot contact-link" href="contact.html">Contact</a>
       <a class="hotspot primary-cta" href="menu.html">Explore the menu</a>
       <a class="hotspot secondary-cta" href="about.html">Behind the paw</a>
 
