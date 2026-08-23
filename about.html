@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
   <style>
     :root {
       --blush: #F3E6E4;
@@ -66,89 +67,6 @@
       margin-inline: auto;
     }
 
-    .pickup-strip {
-      height: clamp(42px, 3.4vw, 60px);
-      display: grid;
-      place-items: center;
-      background: var(--accent);
-      color: var(--cream);
-      font-family: var(--display);
-      font-size: clamp(17px, 1.65vw, 28px);
-      line-height: 1;
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .about-nav {
-      height: clamp(96px, 8.6vw, 150px);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-      align-items: center;
-      gap: clamp(22px, 3.2vw, 52px);
-      background: var(--blush);
-    }
-
-    .nav-list {
-      display: flex;
-      align-items: center;
-      gap: clamp(24px, 3.3vw, 62px);
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .nav-list:last-child {
-      justify-content: flex-end;
-    }
-
-    .mobile-menu-toggle,
-    .mobile-order-cta,
-    .mobile-nav-panel {
-      display: none;
-    }
-
-    .nav-link {
-      position: relative;
-      display: inline-flex;
-      padding: 9px 0;
-      color: var(--ink);
-      font-family: var(--display);
-      font-size: clamp(16px, 1.45vw, 24px);
-      line-height: 1;
-      text-decoration: none;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 1px;
-      height: 5px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 180ms ease;
-    }
-
-    .nav-link:hover::after,
-    .nav-link:focus-visible::after,
-    .nav-link.is-active::after {
-      transform: scaleX(1);
-    }
-
-    .nav-logo {
-      display: grid;
-      place-items: center;
-    }
-
-    .nav-logo img {
-      width: clamp(150px, 13vw, 220px);
-      height: auto;
-    }
-
     .about-section {
       max-width: 100%;
     }
@@ -195,6 +113,7 @@
     .heart-art {
       width: clamp(150px, 16vw, 245px);
       height: auto;
+      display: block;
       margin: clamp(38px, 5vw, 72px) auto 0;
       object-fit: contain;
       object-position: center bottom;
@@ -257,6 +176,7 @@
     .prep-art {
       width: min(100%, 810px);
       height: auto;
+      display: block;
       object-fit: contain;
       object-position: center bottom;
       justify-self: end;
@@ -279,7 +199,9 @@
 
     .origin-copy {
       width: min(100% - 80px, 620px);
+      display: block;
       margin-inline: clamp(40px, 5.5vw, 88px) auto;
+      padding-inline: 0;
       padding-block: clamp(56px, 6vw, 92px);
     }
 
@@ -358,6 +280,7 @@
     .founder-art {
       width: clamp(300px, 30vw, 470px);
       height: auto;
+      display: block;
       object-fit: contain;
       object-position: center bottom;
       justify-self: center;
@@ -458,23 +381,6 @@
     @media (max-width: 1100px) {
       :root { --page-pad: clamp(24px, 4vw, 48px); }
 
-      .about-nav {
-        height: auto;
-        grid-template-columns: 1fr;
-        justify-items: center;
-        gap: 18px;
-        padding-block: 22px;
-      }
-
-      .nav-logo { order: -1; }
-
-      .nav-list,
-      .nav-list:last-child {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 18px 34px;
-      }
-
       .hero-section,
       .story-grid,
       .origin-section,
@@ -520,108 +426,6 @@
 
     @media (max-width: 640px) {
       :root { --page-pad: 22px; }
-
-      .pickup-strip {
-        height: 46px;
-      }
-
-      .about-nav {
-        grid-template-columns: 48px minmax(0, 1fr) 58px;
-        gap: 10px;
-        padding-block: 16px 18px;
-      }
-
-      .nav-list {
-        display: none;
-      }
-
-      .nav-logo {
-        order: 0;
-      }
-
-      .nav-logo img {
-        width: 156px;
-      }
-
-      .mobile-menu-toggle,
-      .mobile-order-cta {
-        min-width: 44px;
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 0;
-        background: transparent;
-        color: var(--ink);
-      }
-
-      .mobile-menu-toggle {
-        flex-direction: column;
-        gap: 5px;
-        justify-self: start;
-        padding: 0;
-        cursor: pointer;
-      }
-
-      .mobile-menu-toggle span {
-        width: 25px;
-        height: 4px;
-        border-radius: 999px;
-        background: var(--ink);
-        transition: transform 180ms ease, opacity 180ms ease;
-      }
-
-      .about-nav.is-open .mobile-menu-toggle span:first-child {
-        transform: translateY(9px) rotate(45deg);
-      }
-
-      .about-nav.is-open .mobile-menu-toggle span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .about-nav.is-open .mobile-menu-toggle span:last-child {
-        transform: translateY(-9px) rotate(-45deg);
-      }
-
-      .mobile-order-cta {
-        justify-self: end;
-        border: 3px solid var(--ink);
-        border-radius: 999px;
-        padding: 0 13px;
-        font-family: var(--display);
-        font-size: 11px;
-        line-height: 1;
-        text-decoration: none;
-        text-transform: uppercase;
-      }
-
-      .mobile-nav-panel:not([hidden]) {
-        grid-column: 1 / -1;
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        padding-top: 16px;
-      }
-
-      .mobile-nav-link {
-        min-height: 46px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid rgba(51, 41, 41, .2);
-        color: var(--ink);
-        font-family: var(--display);
-        font-size: 14px;
-        line-height: 1;
-        text-decoration: none;
-        text-transform: uppercase;
-      }
-
-      .mobile-nav-link.is-active {
-        border-color: var(--accent);
-        background: rgba(235, 146, 164, .18);
-      }
 
       .hero-section,
       .story-section,
@@ -720,22 +524,22 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="about-page">
-    <a class="pickup-strip" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pick up --&gt;</a>
-    <nav class="about-nav content" aria-label="Primary navigation">
+    <a class="pickup-bar" href="https://order.mealkeyway.com/customer/release/index?mid=6b622f377779775a4f414c337946694a6c757a624f513d3d&convertAllImages=true#/main" target="_blank" rel="noopener">Order for pick up --&gt;</a>
+    <nav class="site-nav" aria-label="Primary navigation">
       <button class="mobile-menu-toggle" type="button" aria-controls="mobile-nav-panel" aria-expanded="false" aria-label="Open navigation menu">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </button>
-      <ul class="nav-list">
+      <ul class="nav-group">
         <li><a class="nav-link" href="menu.html">Menu</a></li>
         <li><a class="nav-link" href="catering.html">Catering</a></li>
         <li><a class="nav-link" href="locations.html">Locations</a></li>
       </ul>
-      <a class="nav-logo" href="index.html" aria-label="Momo Ashi home">
-        <img src="about assets/about-nav-logo.jpg" alt="" />
+      <a class="brand-link" href="index.html" aria-label="Momo Ashi home">
+        <img src="brand assets/momo-ashi-nav-logo.jpg" alt="" />
       </a>
-      <ul class="nav-list">
+      <ul class="nav-group">
         <li><a class="nav-link is-active" href="about.html">About</a></li>
         <li><a class="nav-link" href="pawnerships.html">Pawnerships</a></li>
         <li><a class="nav-link" href="contact.html">Contact</a></li>
@@ -818,34 +622,6 @@
       </section>
     </main>
   </div>
-  <script>
-    const aboutNav = document.querySelector(".about-nav");
-    const mobileToggle = document.querySelector(".mobile-menu-toggle");
-    const mobilePanel = document.querySelector("#mobile-nav-panel");
-
-    if (aboutNav && mobileToggle && mobilePanel) {
-      const setMobileMenu = (isOpen) => {
-        aboutNav.classList.toggle("is-open", isOpen);
-        mobileToggle.setAttribute("aria-expanded", String(isOpen));
-        mobilePanel.hidden = !isOpen;
-      };
-
-      mobileToggle.addEventListener("click", () => {
-        setMobileMenu(mobileToggle.getAttribute("aria-expanded") !== "true");
-      });
-
-      mobilePanel.addEventListener("click", (event) => {
-        if (event.target.closest("a")) setMobileMenu(false);
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") setMobileMenu(false);
-      });
-
-      window.addEventListener("resize", () => {
-        if (window.matchMedia("(min-width: 641px)").matches) setMobileMenu(false);
-      });
-    }
-  </script>
+  <script src="scroll-animations.js"></script>
 </body>
 </html>
