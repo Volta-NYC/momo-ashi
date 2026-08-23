@@ -73,6 +73,15 @@
       transition: opacity 500ms ease;
     }
 
+    .reference-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: transparent;
+    }
+
     .reference-slide.is-active {
       opacity: 1;
       visibility: visible;
@@ -80,9 +89,8 @@
 
     .reference-slide img {
       width: 100%;
-      height: calc(100% + clamp(132px, 12vw, 230px));
-      object-fit: cover;
-      object-position: center top;
+      height: auto;
+      max-width: none;
       transform: translateY(calc(clamp(132px, 12vw, 230px) * -1));
     }
 
@@ -175,6 +183,11 @@
       white-space: nowrap;
     }
 
+    .hero-carousel[data-slide="1"] .primary-cta,
+    .hero-carousel[data-slide="1"] .secondary-cta {
+      display: none;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -193,20 +206,74 @@
       }
 
       .reference-slide img {
-        height: 100%;
-        transform: none;
-        object-position: 52% center;
+        width: 100%;
+        height: calc(100% + 150px);
+        transform: translateY(-150px);
+        object-fit: cover;
+        object-position: right top;
+      }
+
+      .reference-slide::after {
+        background: linear-gradient(90deg, rgba(243, 230, 228, .94) 0%, rgba(243, 230, 228, .72) 48%, rgba(243, 230, 228, .08) 100%);
       }
 
       .primary-cta,
       .secondary-cta {
-        top: auto;
-        bottom: 17%;
+        top: 376px;
+        bottom: auto;
         height: 54px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid var(--pearl-black);
+        border-radius: 6px;
+        background: var(--salmon, #EF9178);
+        color: var(--warm-cream);
+        font-family: "Arial Black", "Plus Jakarta Sans", Impact, sans-serif;
+        font-size: 15px;
+        text-indent: 0;
+        text-decoration: none;
+        text-transform: uppercase;
       }
 
-      .primary-cta { left: 8%; width: 48%; }
-      .secondary-cta { left: 58%; width: 34%; }
+      .primary-cta { left: 22px; width: calc(100% - 44px); }
+      .secondary-cta {
+        left: 22px;
+        top: 442px;
+        width: calc(100% - 44px);
+        background: rgba(243, 230, 228, .72);
+        color: var(--pearl-black);
+      }
+
+      .semantic-copy {
+        position: absolute;
+        left: 22px;
+        top: 56px;
+        z-index: 6;
+        width: min(310px, calc(100% - 44px));
+        height: auto;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+      }
+
+      .semantic-copy h1,
+      .semantic-copy h2 {
+        margin: 0;
+        color: var(--pearl-black);
+        font-family: "Arial Black", "Plus Jakarta Sans", Impact, sans-serif;
+        font-size: clamp(42px, 12.8vw, 50px);
+        line-height: .98;
+        text-transform: uppercase;
+      }
+
+      .semantic-copy p {
+        max-width: 280px;
+        margin: 18px 0 0;
+        color: #5D4A47;
+        font-size: 16px;
+        line-height: 1.4;
+      }
 
       .carousel-control {
         position: fixed;
@@ -326,6 +393,7 @@
 
     function showSlide(index) {
       currentSlide = (index + slides.length) % slides.length;
+      carousel.dataset.slide = String(currentSlide);
       slides.forEach((slide, slideIndex) => {
         slide.classList.toggle("is-active", slideIndex === currentSlide);
       });
